@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import index from './components/index'
+import index from './Index'
 
 export default {
   name: 'app',
@@ -16,8 +16,10 @@ export default {
 }
 </script>
 
-
 <style scoped>
+
+ /* @import "./styles/lib/core/reset.scss";
+  @import "./styles/usage/common/reset.scss";*/
 /*#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
