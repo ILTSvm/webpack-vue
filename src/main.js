@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import App from './App'
-import iScroll from 'iscroll'
-import swiper from 'swiper'
+import Detail from './Detail'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  template: '<App/>',
-  components: { App }
+  template: '<Detail/>',
+  components: { Detail }
 })
