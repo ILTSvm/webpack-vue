@@ -9,16 +9,7 @@ import Swiper from 'swiper'
 require('./styles/usage/page/index.scss')
 
 Vue.use(resource)
-Vue.use(router)
-new Vue({
-  el: '#app',
-  template: '<Detail/>',
-  components: { Detail },
-  mounted(){
-    console.dir(1)
-  }
-})
-
+Vue.use(VueRouter)
 
 /* eslint-disable no-new */
 Vue.use(VueRouter);
@@ -27,7 +18,7 @@ import tab from './app.vue'
 import index from './index.vue'
 import list from './list.vue'
 import test from './components/hello2.vue'
-import Detail from './Detail'
+import Detail from './Detail.vue'
 
 const routes = [
 { path: '/', component:tab,
@@ -37,8 +28,15 @@ const routes = [
 			component:index
 		},{
 			path:'/list',
-			component:list
+			component:list,
+			children:[
+				{
+					path:'/Detail/:id',
+					component:Detail
+				}
+			]
 		}
+		//数组结束
 	]
 }
 ]
