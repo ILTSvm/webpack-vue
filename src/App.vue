@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <!-- <img src="./assets/logo.png"> -->
+    <index></index>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import index from './components/index'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    index
   }
 }
 </script>
 
-<style>
-#app {
+<style lang="scss">
+
+  @charset "utf-8";
+  @import "./styles/usage/core/reset.scss";
+  @import "./styles/lib/core/classes.scss";
+  @import "./styles/usage/common/common.scss";
+
+/*#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
+}*/
 </style>
