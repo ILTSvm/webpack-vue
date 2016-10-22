@@ -42,13 +42,6 @@
     $align: $_align !global;
 }
 
-// 合并variables和config中的column map
-@if global-variable-exists(column) {
-    $column: map-merge($_column, $column) !global;
-} @else {
-    $column: $_column !global;
-}
-
 // 合并variables和config中的flex map
 @if global-variable-exists(flex) {
     $flex: map-merge($_flex, $flex) !global;
@@ -84,6 +77,13 @@
     $checked: $_checked !global;
 }
 
+// 合并variables和config中的input map
+@if global-variable-exists(input) {
+    $input: map-merge($_input, $input) !global;
+} @else {
+    $input: $_input !global;
+}
+
 // 合并variables和config中的loading map
 @if global-variable-exists(loading) {
     $loading: map-merge($_loading, $loading) !global;
@@ -105,6 +105,13 @@
     $range: $_range !global;
 }
 
+// 合并variables和config中的score map
+@if global-variable-exists(score) {
+    $score: map-merge($_score, $score) !global;
+} @else {
+    $score: $_score !global;
+}
+
 // 合并variables和config中的actionsheet map
 @if global-variable-exists(actionsheet) {
     $actionsheet: map-merge($_actionsheet, $actionsheet) !global;
@@ -119,39 +126,11 @@
     $breadcrumb: $_breadcrumb !global;
 }
 
-// 合并variables和config中的calendar map
-@if global-variable-exists(calendar) {
-    $calendar: map-merge($_calendar, $calendar) !global;
-} @else {
-    $calendar: $_calendar !global;
-}
-
 // 合并variables和config中的card map
 @if global-variable-exists(card) {
     $card: map-merge($_card, $card) !global;
 } @else {
     $card: $_card !global;
-}
-
-// 合并variables和config中的carousel map
-@if global-variable-exists(carousel) {
-    $carousel: map-merge($_carousel, $carousel) !global;
-} @else {
-    $carousel: $_carousel !global;
-}
-
-// 合并variables和config中的dialog map
-@if global-variable-exists(dialog) {
-    $dialog: map-merge($_dialog, $dialog) !global;
-} @else {
-    $dialog: $_dialog !global;
-}
-
-// 合并variables和config中的group map
-@if global-variable-exists(group) {
-    $group: map-merge($_group, $group) !global;
-} @else {
-    $group: $_group !global;
 }
 
 // 合并variables和config中的header map
@@ -168,27 +147,6 @@
     $list: $_list !global;
 }
 
-// 合并variables和config中的mask map
-@if global-variable-exists(mask) {
-    $mask: map-merge($_mask, $mask) !global;
-} @else {
-    $mask: $_mask !global;
-}
-
-// 合并variables和config中的number map
-@if global-variable-exists(number) {
-    $number: map-merge($_number, $number) !global;
-} @else {
-    $number: $_number !global;
-}
-
-// 合并variables和config中的picker map
-@if global-variable-exists(picker) {
-    $picker: map-merge($_picker, $picker) !global;
-} @else {
-    $picker: $_picker !global;
-}
-
 // 合并variables和config中的proportion map
 @if global-variable-exists(proportion) {
     $proportion: map-merge($_proportion, $proportion) !global;
@@ -196,46 +154,11 @@
     $proportion: $_proportion !global;
 }
 
-// 合并variables和config中的rating map
-@if global-variable-exists(rating) {
-    $rating: map-merge($_rating, $rating) !global;
-} @else {
-    $rating: $_rating !global;
-}
-
 // 合并variables和config中的search map
 @if global-variable-exists(search) {
     $search: map-merge($_search, $search) !global;
 } @else {
     $search: $_search !global;
-}
-
-// 合并variables和config中的swipemenu map
-@if global-variable-exists(swipemenu) {
-    $swipemenu: map-merge($_swipemenu, $swipemenu) !global;
-} @else {
-    $swipemenu: $_swipemenu !global;
-}
-
-// 合并variables和config中的suggest map
-@if global-variable-exists(suggest) {
-    $suggest: map-merge($_suggest, $suggest) !global;
-} @else {
-    $suggest: $_suggest !global;
-}
-
-// 合并variables和config中的switch map
-@if global-variable-exists(switch) {
-    $switch: map-merge($_switch, $switch) !global;
-} @else {
-    $switch: $_switch !global;
-}
-
-// 合并variables和config中的tab map
-@if global-variable-exists(tab) {
-    $tab: map-merge($_tab, $tab) !global;
-} @else {
-    $tab: $_tab !global;
 }
 
 // 合并variables和config中的table map
@@ -252,16 +175,121 @@
     $toolbar: $_toolbar !global;
 }
 
-// 合并variables和config中的toast map
-@if global-variable-exists(toast) {
-    $toast: map-merge($_toast, $toast) !global;
-} @else {
-    $toast: $_toast !global;
-}
-
 // 合并variables和config中的vcode map
 @if global-variable-exists(vcode) {
     $vcode: map-merge($_vcode, $vcode) !global;
 } @else {
     $vcode: $_vcode !global;
+}
+
+// 合并variables和config中的datepicker map
+@if global-variable-exists(datepicker) {
+    $datepicker: map-merge($_datepicker, $datepicker) !global;
+} @else {
+    $datepicker: $_datepicker !global;
+}
+
+// 合并variables和config中的dialog map
+@if global-variable-exists(dialog) {
+    $dialog: map-merge($_dialog, $dialog) !global;
+} @else {
+    $dialog: $_dialog !global;
+}
+
+// 合并variables和config中的doublelist map
+@if global-variable-exists(doublelist) {
+    $doublelist: map-merge($_doublelist, $doublelist) !global;
+} @else {
+    $doublelist: $_doublelist !global;
+}
+
+// 合并variables和config中的group map
+@if global-variable-exists(group) {
+    $group: map-merge($_group, $group) !global;
+} @else {
+    $group: $_group !global;
+}
+
+// 合并variables和config中的index map
+@if global-variable-exists(index) {
+    $index: map-merge($_index, $index) !global;
+} @else {
+    $index: $_index !global;
+}
+
+// 合并variables和config中的mask map
+@if global-variable-exists(mask) {
+    $mask: map-merge($_mask, $mask) !global;
+} @else {
+    $mask: $_mask !global;
+}
+
+// 合并variables和config中的number map
+@if global-variable-exists(number) {
+    $number: map-merge($_number, $number) !global;
+} @else {
+    $number: $_number !global;
+}
+
+// 合并variables和config中的panel map(panel和group公用一个map)
+@if global-variable-exists(group) {
+    $group: map-merge($_group, $group) !global;
+} @else {
+    $group: $_group !global;
+}
+
+// 合并variables和config中的rating map
+@if global-variable-exists(rating) {
+    $rating: map-merge($_rating, $rating) !global;
+} @else {
+    $rating: $_rating !global;
+}
+
+// 合并variables和config中的select map
+@if global-variable-exists(select) {
+    $select: map-merge($_select, $select) !global;
+} @else {
+    $select: $_select !global;
+}
+
+// 合并variables和config中的slidermenu map
+@if global-variable-exists(slidermenu) {
+    $slidermenu: map-merge($_slidermenu, $slidermenu) !global;
+} @else {
+    $slidermenu: $_slidermenu !global;
+}
+
+// 合并variables和config中的suggest map
+@if global-variable-exists(suggest) {
+    $suggest: map-merge($_suggest, $suggest) !global;
+} @else {
+    $suggest: $_suggest !global;
+}
+
+// 合并variables和config中的switch map
+@if global-variable-exists(switch) {
+    $switch: map-merge($_switch, $switch) !global;
+} @else {
+    $switch: $_switch !global;
+}
+
+// 合并variables和config中的switchable map
+@if global-variable-exists(switchable) {
+    $switchable: map-merge($_switchable, $switchable) !global;
+} @else {
+    $switchable: $_switchable !global;
+}
+
+// 合并variables和config中的tab map
+@if global-variable-exists(tab) {
+    $tab: map-merge($_tab, $tab) !global;
+} @else {
+    $tab: $_tab !global;
+}
+
+// 合并variables和config中的tip map
+@if global-variable-exists(tip) {
+    $tip: map-merge($_tip, $tip) !global;
+} @else {
+    $tip: $_tip !global;
 }
