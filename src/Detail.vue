@@ -7,13 +7,17 @@
 </template>
 
 <script>
-import Swiper from './components/detail/swiper'
+import Swiper from './components/common/swiper'
 import Count from './components/detail/count'
 export default {
   name: 'app',
   data(){
     return {
-      piclists:[],
+      piclists: [require('./assets/detail.gif')],
+      swiper:{
+        
+        autoplay: false,
+      },
       name: '加载中...',
       price: '加载中...'
     }

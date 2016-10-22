@@ -13,7 +13,7 @@ export default {
   name: 'swiper',
   data(){
       return {
-
+          pic: "123123"
       }
   },
   props:['piclists','name'],
