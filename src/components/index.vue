@@ -29,15 +29,17 @@
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
+<style scoped>
   header{
-    @include flexbox();
-    @include flex-direction(row);
+    /*@include flexbox();*/
+    display: flexbox;
+    /*@include flex-direction(row);*/
     height: 48px;
     padding: 8px 16px;
     background: rgb(180, 6, 228);
     div{
-      @include flex(3);
+      /*@include flex(3);*/
+      flex: 3;
       height: 100%;
       img{
         width: 100%;
@@ -45,10 +47,12 @@
       }
     }
     form{
-      @include flex(9);
+      /*@include flex(9);*/
+      flex: 9;
     }
     span{
-      @include flex(2);
+      /*@include flex(2);*/
+      flex: 2;
     }
   }
 </style>
