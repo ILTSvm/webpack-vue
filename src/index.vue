@@ -1,28 +1,16 @@
 <template>
-  <div id="index">
-    <img src="./assets/logo.png">
-    <hello></hello>
+  <div id="Index">
+    <index></index>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import index from './components/index/header';
 
 export default {
-  name: 'index',
+  name: 'Index',
   components: {
-    Hello
+    index
   }
 }
 </script>
-
-<style>
-#index {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
