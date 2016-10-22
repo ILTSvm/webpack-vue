@@ -1,8 +1,17 @@
 <template>
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="pic in piclists"><img class="swiperimg" :src="'https://wlwywlqk.cn/img/'+pic" :alt="name"></div>
+            <div class="swiper-slide" v-for="pic in piclists"><img class="swiperimg" :src="pic" ></div>
         </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination" v-if="options.pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev" v-if="options.prevButton"></div>
+        <div class="swiper-button-next" v-if="options.nextButton"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar" v-if="options.scrollbar"></div>
     </div>
 </template>
 
@@ -13,12 +22,36 @@ export default {
   name: 'swiper',
   data(){
       return {
-          pic: "123123"
       }
   },
-  props:['piclists','name'],
+  props:['swiper'],
+  computed:{
+      piclists(){
+          if(this.swiper.piclists&&this.swiper.piclists.length!==0){
+              return this.swiper.piclists
+          }else{
+              return [require('../../assets/detail.png')]
+          }
+      }, 
+      options(){
+          var options = this.swiper.options
+          if(options.pagination){
+              options.pagination = '.swiper-pagination'
+          }
+          if(options.prevButton){
+              options.prevButton = '.swiper-button-prev'
+          }
+          if(options.nextButton){
+              options.nextButton = '.swiper-button-next'
+          }
+          if(options.scrollbar){
+              options.scrollbar = '.swiper-scrollbar'
+          }
+          return options
+      }
+  },
   updated(){
-      new Swiper('.swiper-container')
+      new Swiper('.swiper-container',this.options)
   }
 }
 </script>
@@ -26,12 +59,11 @@ export default {
 <style lang="scss" scoped>
     @charset "utf-8";
     @import "../../styles/lib/swiper.css";
-    .swiperimg{
+    .swiperimg {
         width: 100%;
-        height: 100vw;
-        padding: 10%;
     }
-    .swiper-slide{
+    
+    .swiper-slide {
         box-sizing: border-box;
     }
 </style>
