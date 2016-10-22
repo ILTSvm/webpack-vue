@@ -26,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  font-size: 0.14em;
+  font-size: 14px;
   line-height: 1.5;
   font-family: Helvetica Neue, Helvetica, STHeiTi, sans-serif;
 }
@@ -257,7 +257,6 @@ a {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
-  height: .1px;
   position: relative;
 }
 
@@ -344,6 +343,7 @@ a {
   width: 0.6rem;
   color: #fff;
   cursor: pointer;
+  font-size: 0.14rem;
 }
 
 .yo-header > .regret:active,
@@ -371,75 +371,91 @@ a {
   text-align: right;
 }
 
-.yo-range > .scale {
-  position: relative;
-  margin: 0 0.14rem;
-  font-size: .12rem;
+.yo-range {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  line-height: 1;
 }
 
-.yo-range > .scale > .divide {
-  display: inline-block;
-  -webkit-transform: translatex(-50%);
-  transform: translatex(-50%);
-  white-space: nowrap;
-}
-
-.yo-range > .scale > .divide:not(:first-child) {
-  position: absolute;
-}
-
-.yo-range > .scale > .divide:last-child {
-  left: 100%;
-}
-
-.yo-range > .track {
+.yo-range > input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  width: .1px;
   overflow: hidden;
-  position: relative;
-  height: 0.3rem;
+  height: .28rem;
   background-image: -webkit-linear-gradient(top, #ccc, #ccc);
   background-image: linear-gradient(to bottom, #ccc, #ccc);
+  background-size: 100% .04rem;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100% 0.02rem;
 }
 
-.yo-range > .track > .thumb {
-  position: absolute;
-}
-
-.yo-range > .track > .thumb::before, .yo-range > .track > .thumb::after {
-  display: block;
-  content: "\0020";
-}
-
-.yo-range > .track > .thumb::before {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  left: -9999px;
-  height: 0.02rem;
-  -webkit-transform: translatey(-50%);
-  transform: translatey(-50%);
-  background-color: #1ba9ba;
-  content: "\0020";
-}
-
-.yo-range > .track > .thumb:not(:only-child):first-child {
-  z-index: 1;
-}
-
-.yo-range > .track > .thumb:not(:only-child):first-child::before {
-  background-color: #ccc;
-}
-
-.yo-range > .track > .thumb::after {
+.yo-range > input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.2rem;
+  height: 0.2rem;
   position: relative;
-  margin-top: .01rem;
-  width: 0.28rem;
-  height: 0.28rem;
+  border: 0;
   border-radius: 50%;
-  box-shadow: 0 0 0.01rem rgba(0, 0, 0, 0.25), 0 0.01rem 0.02rem rgba(0, 0, 0, 0.15);
+  -webkit-background-clip: padding-box !important;
+  background-clip: padding-box !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 1px 5px rgba(0, 0, 0, 0.25);
   background-color: #fff;
+}
+
+.yo-range > input[type="range"]::-webkit-slider-thumb::before {
+  position: absolute;
+  top: .08rem;
+  left: -2001px;
+  width: 2000px;
+  height: .04rem;
+  background-color: #444;
+  content: "\0020";
+}
+
+.yo-range > input[type="range"]:disabled {
+  opacity: .4;
+}
+
+.yo-range > .yo-ico {
+  font-size: .2rem;
+}
+
+.yo-range > .yo-ico:first-child {
+  margin-right: .1rem;
+}
+
+.yo-range > .yo-ico:last-child {
+  margin-left: .1rem;
+}
+
+.yo-range-a > input[type="range"]::-webkit-slider-thumb::before {
+  background: #4a87ee;
+}
+
+.yo-range-b > input[type="range"]::-webkit-slider-thumb::before {
+  background: #43cee6;
+}
+
+.yo-range-c > input[type="range"]::-webkit-slider-thumb::before {
+  background: #f0b840;
+}
+
+.yo-range-d > input[type="range"]::-webkit-slider-thumb::before {
+  background: #ef4e3a;
+}
+
+.yo-range-e > input[type="range"]::-webkit-slider-thumb::before {
+  background: #8a6de9;
+}
+
+.yo-range-f > input[type="range"]::-webkit-slider-thumb::before {
+  background: #4bd763;
 }
 
 .yo-list {
@@ -608,6 +624,7 @@ a {
   overflow: hidden;
   background-color: #fff;
   color: #212121;
+  font-size: 0.14rem;
   position: relative;
 }
 
@@ -659,16 +676,11 @@ a {
   border-width: 0;
 }
 
-.yo-list > .item-input > .input {
-  -webkit-appearance: none;
-  appearance: none;
+.yo-list > .item-input > .yo-input {
   display: block;
-  width: 100%;
+  height: auto;
+  padding: 0;
   border: 0;
-}
-
-.yo-list > .item-input > .input::-webkit-input-placeholder {
-  color: #bbb;
 }
 
 .yo-list > .item-stacked {
@@ -729,14 +741,6 @@ a {
   border-color: #ccc;
 }
 
-.yo-list-table > .label {
-  background-color: #f9f9f9;
-}
-
-.yo-list-table > .label::after {
-  border-color: #aaa;
-}
-
 .m-demo {
   position: relative;
   min-height: .88rem;
@@ -744,7 +748,6 @@ a {
 
 .m-demo > .title {
   padding: .18rem .1rem .03rem;
-  font-weight: normal;
   position: relative;
 }
 

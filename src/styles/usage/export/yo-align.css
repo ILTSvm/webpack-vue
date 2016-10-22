@@ -26,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  font-size: 0.14em;
+  font-size: 14px;
   line-height: 1.5;
   font-family: Helvetica Neue, Helvetica, STHeiTi, sans-serif;
 }
@@ -257,7 +257,6 @@ a {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
-  height: .1px;
   position: relative;
 }
 
@@ -363,6 +362,7 @@ a {
   width: 0.6rem;
   color: #fff;
   cursor: pointer;
+  font-size: 0.14rem;
 }
 
 .yo-header > .regret:active,
@@ -398,6 +398,7 @@ a {
   height: 0.44rem;
   position: relative;
   background-color: #fafafa;
+  font-size: 0.14rem;
   text-align: center;
   line-height: 0.44rem;
 }
@@ -490,7 +491,7 @@ a {
 }
 
 .yo-tab > .item.item-on {
-  color: #1ba9ba;
+  color: #00bec8;
 }
 
 .yo-tab > .item-y-ico {
@@ -606,7 +607,7 @@ a {
 
 .m-nodata {
   padding-top: .55rem;
-  background: url(//s.qunarzz.com/yo/bgimg/what.png) no-repeat center 0;
+  background: url(//ss.qunarzz.com/yo/bgimg/what.png) no-repeat center 0;
   -webkit-background-size: 0.9rem 0.55rem;
   background-size: 0.9rem 0.55rem;
   text-align: center;

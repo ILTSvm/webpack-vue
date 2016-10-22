@@ -26,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  font-size: 0.14em;
+  font-size: 14px;
   line-height: 1.5;
   font-family: Helvetica Neue, Helvetica, STHeiTi, sans-serif;
 }
@@ -256,7 +256,6 @@ a {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
-  height: .1px;
   position: relative;
 }
 
@@ -343,6 +342,7 @@ a {
   width: 0.6rem;
   color: #fff;
   cursor: pointer;
+  font-size: 0.14rem;
 }
 
 .yo-header > .regret:active,
@@ -536,6 +536,7 @@ a {
   overflow: hidden;
   background-color: #fff;
   color: #212121;
+  font-size: 0.14rem;
   position: relative;
 }
 
@@ -587,16 +588,11 @@ a {
   border-width: 0;
 }
 
-.yo-list > .item-input > .input {
-  -webkit-appearance: none;
-  appearance: none;
+.yo-list > .item-input > .yo-input {
   display: block;
-  width: 100%;
+  height: auto;
+  padding: 0;
   border: 0;
-}
-
-.yo-list > .item-input > .input::-webkit-input-placeholder {
-  color: #bbb;
 }
 
 .yo-list > .item-stacked {
@@ -657,14 +653,6 @@ a {
   border-color: #ccc;
 }
 
-.yo-list-table > .label {
-  background-color: #f9f9f9;
-}
-
-.yo-list-table > .label::after {
-  border-color: #aaa;
-}
-
 .yo-badge {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -677,6 +665,8 @@ a {
   align-items: center;
   word-wrap: break-word;
   word-break: break-all;
+  min-width: .16rem;
+  min-height: .16rem;
   padding: 0 0.03rem;
   position: relative;
   border-radius: 0.1rem;
@@ -684,17 +674,6 @@ a {
   color: #fff;
   font-size: 0.12rem;
   line-height: 1;
-}
-
-.yo-badge:not(:empty) {
-  min-width: .16rem;
-  min-height: .16rem;
-}
-
-.yo-badge:empty {
-  min-width: .08rem;
-  min-height: .08rem;
-  vertical-align: super;
 }
 
 .yo-badge::after {
@@ -831,7 +810,6 @@ a {
 
 .m-demo > .title {
   padding: .18rem .1rem .03rem;
-  font-weight: normal;
   position: relative;
 }
 

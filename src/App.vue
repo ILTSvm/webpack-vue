@@ -16,13 +16,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
 
-  @charset "utf-8";
-  @import "./styles/usage/core/reset.scss";
-  @import "./styles/lib/core/classes.scss";
-  @import "./styles/usage/common/common.scss";
-
+<style scoped>
 /*#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

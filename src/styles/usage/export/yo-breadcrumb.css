@@ -1,4 +1,3 @@
-@charset "UTF-8";
 *,
 ::before,
 ::after {
@@ -27,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  font-size: 0.14em;
+  font-size: 14px;
   line-height: 1.5;
   font-family: Helvetica Neue, Helvetica, STHeiTi, sans-serif;
 }
@@ -258,7 +257,6 @@ a {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   flex: 1;
-  height: .1px;
   position: relative;
 }
 
@@ -345,6 +343,7 @@ a {
   width: 0.6rem;
   color: #fff;
   cursor: pointer;
+  font-size: 0.14rem;
 }
 
 .yo-header > .regret:active,
@@ -395,15 +394,10 @@ a {
 .yo-breadcrumb > .item:not(:last-child)::after {
   display: inline-block;
   overflow: hidden;
-  padding-left: 0.05rem;
   font-family: yofont;
-  content: "";
+  content: "\f07f";
   vertical-align: top;
   color: #ccc;
-}
-
-.yo-breadcrumb-test > .item:not(:last-child)::after {
-  content: "/";
 }
 
 .m-demo {
@@ -413,7 +407,6 @@ a {
 
 .m-demo > .title {
   padding: .18rem .1rem .03rem;
-  font-weight: normal;
   position: relative;
 }
 
