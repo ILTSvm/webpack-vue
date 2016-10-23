@@ -1,7 +1,7 @@
 <template>
 
 	<div id = "container">
-	    <div class = "router-view">
+	    <div id = "scorll">
 	        <router-view></router-view>
 	    </div> 
 
@@ -17,7 +17,7 @@
               v-on:click="changPage($index)"-->
 </template>
 <script>
-
+import IScroll from 'iscroll'
 
 export default {
   name: 'tab',
@@ -45,6 +45,9 @@ export default {
       ]
     }
   },
+  mounted(){
+  	new IScroll('#scorll',{click:true, mouseWheel: true})
+  },
   methods: {
     changPage(i) {
       this.cur = i;
@@ -61,7 +64,7 @@ export default {
 	width:100%;
 	@include flexbox();
 	@include flex-direction(column);
-	.router-view{
+	#scorll{
 	    @include flex(1);
 	    width:100%;
 	}
