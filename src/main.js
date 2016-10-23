@@ -36,7 +36,8 @@ const routes = [
 			component:list,
 			children:[
 				{
-					path:'/Detail',
+					path:'/Detail/:id',
+					name:'Detail',
 					component:Detail
 				}
 			]
@@ -50,7 +51,8 @@ const routes = [
 		//数组结束
 	]
 },{
-	path:'/Detail',
+	path:'/Detail/:id',
+	name:'Detail',
 	component:Detail
 }
 ]
