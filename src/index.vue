@@ -1,5 +1,6 @@
 <template>
   <div id="index">
+
     <hello></hello>
   </div>
 </template>

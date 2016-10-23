@@ -9,16 +9,7 @@ import Swiper from 'swiper'
 require('./styles/usage/page/index.scss')
 
 Vue.use(resource)
-Vue.use(router)
-new Vue({
-  el: '#app',
-  template: '<Detail/>',
-  components: { Detail },
-  mounted(){
-    console.dir(1)
-  }
-})
-
+Vue.use(VueRouter)
 
 /* eslint-disable no-new */
 Vue.use(VueRouter);
@@ -27,19 +18,42 @@ import tab from './app.vue'
 import index from './index.vue'
 import list from './list.vue'
 import test from './components/hello2.vue'
-import Detail from './Detail'
-
+import Detail from './Detail.vue'
+import car from './car.vue'
+import mine from './mine.vue'
 const routes = [
-{ path: '/', component:tab,
+{   path: '/',
+    component:tab,
 	children:[
-		{	
+		{
+			path:'/',
+			component:index 
+		},{	
 			path:'/index',
 			component:index
 		},{
 			path:'/list',
-			component:list
+			component:list,
+			children:[
+				{
+					path:'/Detail/:id',
+					name:'Detail',
+					component:Detail
+				}
+			]
+		},{
+			path:'/car',
+			component:car
+		},{
+			path:'/mine',
+			component:mine
 		}
+		//数组结束
 	]
+},{
+	path:'/Detail/:id',
+	name:'Detail',
+	component:Detail
 }
 ]
 const router = new VueRouter({
