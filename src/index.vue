@@ -1,6 +1,5 @@
 <template>
   <div id="index">
-    <img src="./assets/logo.png">
     <hello></hello>
   </div>
 </template>

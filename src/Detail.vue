@@ -22,7 +22,8 @@ export default {
       swiper:{
         piclists: [],
         options: {
-          autoplay: 3600
+          autoplay: 3600,
+          pagination: true
         }
       },
       count: 0,
