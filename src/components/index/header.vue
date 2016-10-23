@@ -1,15 +1,13 @@
 <template>
-  <div class="index">
-    <header>
-      <div>
-        <img :src="headerInfo.iconImg" alt="闪耀你未来" />
-      </div>
-      <form action="">
-        <input type="text" placeholder="在结果中搜索" />
-      </form>
-      <span>{{headerInfo.logonContent}}</span>
-    </header>
-  </div>
+  <header>
+    <div>
+      <img :src="headerInfo.iconImg" alt="闪耀你未来" />
+    </div>
+    <form action="">
+      <input type="text" placeholder="在结果中搜索" />
+    </form>
+    <span>{{headerInfo.logonContent}}</span>
+  </header>
 </template>
 
 <script>
@@ -18,7 +16,7 @@
     data(){
       return {
         headerInfo: {
-          iconImg: require('../assets/test.png'),
+          iconImg: require('../../assets/test.png'),
           logonContent: '登录'
         }
       }
@@ -30,8 +28,10 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>  
   @import '../../styles/usage/page/index.scss';
+
   header{
     @include flexbox();
+    width: 100%;
     height: 48px;
     font-size: 16px;
     font-weight: 600;

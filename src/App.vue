@@ -1,12 +1,12 @@
 <template>
 	<div id = "container">
 	    <router-view></router-view>
-		<div id = "tab">
-			<div v-for = "tabs in tablist">
+		  <div id = "tab">
+			<!-- <div v-for = "tabs in tablist">
 				<router-link :to="tabs.linkTo">
 					{{tabs.text}}
 				</router-link>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>
@@ -46,5 +46,5 @@ export default {
   	width:100%;
   	display:flex;
   }
-s</style>
+</style>
 

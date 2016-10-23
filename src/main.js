@@ -8,24 +8,13 @@ import Swiper from 'swiper'
 require('./styles/usage/page/index.scss')
 
 Vue.use(resource)
-Vue.use(router)
-new Vue({
-  el: '#app',
-  // template: '<Detail/>',
-  // components: { Detail }, 
-  template: '<App/>',
-  components: { App },
 
-  mounted(){
-    console.dir(1)
-  }
-})
 
 
 /* eslint-disable no-new */
 Vue.use(VueRouter);
 //组件
-import tab from './app.vue'
+import tab from './App.vue'
 import index from './index.vue'
 import list from './list.vue'
 import test from './components/hello2.vue'
