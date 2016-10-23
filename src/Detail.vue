@@ -72,6 +72,7 @@ export default {
     },
     onIncrease(){
       this.count ++;
+      console.dir("sd")
     }
   },
   computed: {
