@@ -3,13 +3,18 @@
     <swiper :swiper="swiper"></swiper>
     <div class="name">{{name}}</div>
     <div class="price">{{'￥'+price}}</div>
-    <div class="count"><count :count="count"></count></div>
+    <div class="countbox">
+      <div class="count">
+        <span class="decrease">-</span>
+        <input class="input" v-model="count">
+        <span class="increase">+</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Swiper from './components/common/swiper'
-import Count from './components/common/count'
 export default {
   name: 'app',
   data(){
@@ -28,7 +33,6 @@ export default {
   },
   components: {
     Swiper,
-    Count
   },
   beforeCreate(){
     // var id = this.$route.params.id;
@@ -68,11 +72,16 @@ export default {
     color: #fff;
     font-weight: 900;
   }
-  .count{
+  .countbox{
     margin: 16px 0 0;
     background: #eee;
     padding: .1rem .16rem;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    span{
+      font-size: 16px;
+      font-weight: 900;
+      color: #aaa;
+    }
   }
 </style>
