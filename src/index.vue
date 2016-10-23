@@ -1,26 +1,16 @@
 <template>
-	<div class="index">
-		<headerHtml></headerHtml>
-		<goodsTypes></goodsTypes>
-	</div>
-   
+  <div id="Index">
+    <index></index>
+  </div>
 </template>
 
 <script>
-import headerHtml from './components/index/header';
-import goodsTypes from './components/index/goodsTypes';
+import index from './components/index/header';
 
 export default {
   name: 'Index',
   components: {
-    headerHtml,
-    goodsTypes
+    index
   }
 }
 </script>
-
-<style scoped>
-	.index{
-		width: 100%;
-	}
-</style>
