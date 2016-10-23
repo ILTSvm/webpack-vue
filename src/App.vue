@@ -2,21 +2,24 @@
 
 	<div id = "container">
 	    <div id="scorll">
+
 	        <router-view></router-view>
 	    </div> 
 
 		<div id = "tab">
 			<div v-for = "tabs in tablist" class = "tablist">
+
 				<router-link :to="tabs.linkTo">
 					{{tabs.text}}
 				</router-link>
-			</div>
+			</div> 
 		</div>
 	</div>
 	<!--v-bind:class="cur == $index ? 'active' : ''"
               v-on:click="changPage($index)"-->
 </template>
 <script>
+
 import IScroll from 'iscroll'
 
 export default {
@@ -88,6 +91,5 @@ export default {
 	    }
 	}
 }
-
 </style>
 
