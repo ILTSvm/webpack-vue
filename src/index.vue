@@ -14,6 +14,13 @@ export default {
   components: {
     headerHtml,
     goodsTypes
+  },
+  ready: function(){
+    console.log(1);
+
+    setTimeout(function(){
+      new IScroll('#index');
+    }, 2000);
   }
 }
 </script>
