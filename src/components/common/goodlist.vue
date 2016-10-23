@@ -16,6 +16,7 @@
 	</div>
 </template>
 <script>
+import IScroll from "IScroll";
 export default {
 	name:"goodlists",
     data() {
@@ -28,9 +29,9 @@ export default {
       this.$http.get('https://wlwywlqk.cn/goods/getData?pageindex=1&pagesize=10')
         .then((res) => {
           this.goodlist = JSON.parse(res.data);
-//        setTimeout(function(){
-//          new IScroll('#index-scroll');
-//        }, 500);
+          setTimeout(function(){
+            new IScroll('.goodlists');
+          }, 500);
 //
 //        mySwiper = new Swiper("#index-swiper", {
 //          onSlideChangeStart: function(){
