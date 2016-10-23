@@ -50,10 +50,6 @@ const routes = [
 		}
 		//数组结束
 	]
-},{
-	path:'/Detail/:id',
-	name:'Detail',
-	component:Detail
 }
 ]
 const router = new VueRouter({
