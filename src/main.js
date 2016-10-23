@@ -19,11 +19,16 @@ import index from './index.vue'
 import list from './list.vue'
 import test from './components/hello2.vue'
 import Detail from './Detail.vue'
-
+import car from './car.vue'
+import mine from './mine.vue'
 const routes = [
-{ path: '/', component:tab,
+{   path: '/',
+    component:tab,
 	children:[
-		{	
+		{
+			path:'/',
+			component:index 
+		},{	
 			path:'/index',
 			component:index
 		},{
@@ -31,13 +36,22 @@ const routes = [
 			component:list,
 			children:[
 				{
-					path:'/Detail/:id',
+					path:'/Detail',
 					component:Detail
 				}
 			]
+		},{
+			path:'/car',
+			component:car
+		},{
+			path:'/mine',
+			component:mine
 		}
 		//数组结束
 	]
+},{
+	path:'/Detail',
+	component:Detail
 }
 ]
 const router = new VueRouter({

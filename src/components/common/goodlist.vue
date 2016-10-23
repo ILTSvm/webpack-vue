@@ -3,7 +3,8 @@
 		<router-view></router-view>
 		<ul class = "goodlists">
 			<li  class =  "goodinfo" v-for = "good in goodlist">
-				<router-link :to="{ path: '/Detail', query: { id: good._id }}">123</router-link>
+				<router-link :to="{ path: '/Detail', query: { id: good._id }}">{{good.name}}</router-link>
+				<img :src = "'https://wlwywlqk.cn/img/'+good.piclists[0]">
 			</li>
 		</ul>
 	</div>

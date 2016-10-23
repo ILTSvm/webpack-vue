@@ -35,11 +35,11 @@ export default {
       	},{
       		text:'购物车',
       		src:'',
-      		linkTo:'/'
+      		linkTo:'./car'
       	},{
       		text:'会员中心',
       		src:'',
-      		linkTo:'/'
+      		linkTo:'./mine'
       	}
       ]
     }
