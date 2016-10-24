@@ -28,22 +28,26 @@ export default {
       	{
       		text:'首页',
       		src:'',
-      		linkTo:'./index'
+      		linkTo:'/index'
       	},{
       		text:'闪耀商城',
       		src:'',
-      		linkTo:'./list'
+      		linkTo:'/list'
       	},{
       		text:'购物车',
       		src:'',
-      		linkTo:'./car'
+      		linkTo:'/car'
       	},{
       		text:'会员中心',
       		src:'',
-      		linkTo:'./mine'
+      		linkTo:'/mine'
       	}
       ]
     }
+  },
+  updated(){
+	  console.dir(11111)
+  	new IScroll('#scorll',{click:true, mouseWheel: true})
   },
   methods: {
     changPage(i) {
@@ -65,7 +69,8 @@ export default {
 	#scorll{
 	    @include flex(1);
 	    width:100%;
-	    overflow:hidden;
+		height: 100%;
+		overflow: hidden;
 	}
 	#tab{
 	    .active{

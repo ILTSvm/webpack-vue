@@ -21,38 +21,33 @@ import Detail from './Detail.vue'
 import car from './car.vue'
 import mine from './mine.vue'
 const routes = [
-	{   path: '/',
-	    component:tab,
-		children:[
+	{
+		path: '/',
+		component: tab,
+		children: [
 			{
-				path:'/',
-				component:index 
-			},{	
-				path:'/index',
-				component:index
-			},{
-				path:'/list',
-				component:list,
-				children:[
-					{
-						path:'/Detail/:id',
-						name:'Detail',
-						component:Detail
-					}
-				]
-			},{
-				path:'/car',
-				component:car
-			},{
-				path:'/mine',
-				component:mine
+				path: '/',
+				component: index
+			}, {
+				path: '/index',
+				component: index
+			}, {
+				path: '/list',
+				component: list,
+
+			}, {
+				path: '/car',
+				component: car
+			}, {
+				path: '/mine',
+				component: mine
+			}, {
+				path: '/list/Detail/:id',
+				name: 'Detail',
+				component: Detail
 			}
 			//数组结束
 		]
-	},{
-		path:'/Detail/:id',
-		name:'Detail',
-		component:Detail
 	}
 ]
 const router = new VueRouter({
@@ -61,8 +56,7 @@ const router = new VueRouter({
 
 const app = new Vue({
 	router,
-	updated(){
-		console.dir(123124)
+	updated() {
 	}
 }).$mount('#app')
 
