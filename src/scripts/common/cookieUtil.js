@@ -58,7 +58,6 @@ let _cookie = {
 	   
 	        var arrItem=arrCookies[i].split("=");
 	        if(arrItem[0]==cookieName){
-
 	            cookieValue=arrItem[1];
 	        }
     	}
@@ -80,12 +79,16 @@ let _cookie = {
 	 */
 	getGood(){
 		var goodInfo = this.getCookie("goods");
-		var goodArr = goodInfo.split("&&&");
-		var goodinfo = [];
-		for(var i = 0;i<goodArr.length;i++){zz
-			goodinfo[i] = JSON.parse(goodArr[i]);
+		if(goodInfo == ""){
+			return false;
+		}else{
+			var goodArr = goodInfo.split("&&&");
+			var goodinfo = [];
+			for(var i = 0;i<goodArr.length;i++){
+				goodinfo[i] = JSON.parse(goodArr[i]);
+			}
+			return goodinfo;
 		}
-		return goodinfo;
 	},
 	/**
 	 * 

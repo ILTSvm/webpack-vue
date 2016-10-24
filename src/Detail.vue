@@ -42,7 +42,7 @@ export default {
     return {
       carcount: 0,
       swiper:{
-        piclists: [],
+        piclists: [], 
         options: {
           autoplay: 3600,
           pagination: true,
@@ -70,7 +70,7 @@ export default {
         name: this.name,
         count: this.count,
         price: this.price,
-        src: ''
+        src: this.src
       })
       }
     },
@@ -81,7 +81,6 @@ export default {
     },
     onIncrease(){
       this.count ++;
-      console.dir("sd")
     }
   },
   computed: {
@@ -100,7 +99,7 @@ export default {
       for(var i = 0; i < data[0].piclists.length;i++){
         this.swiper.piclists.splice(i,1,'https://wlwywlqk.cn/img/'+data[0].piclists[i]) 
       }
-      this.src=data[0].piclists[0]
+      this.src='https://wlwywlqk.cn/img/'+data[0].piclists[0]
       this.name = data[0].name
       this.price = data[0].price
       this.comment = data[0].comment
