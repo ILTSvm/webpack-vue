@@ -80,11 +80,13 @@ export default {
   components: {
     Swiper,
   },
-
-  
+  updated(){
+    console.dir(this)
+    this.$parent.$emit('iscroll')
+    this.$destroy()
+  },
   beforeCreate(){
     var id = this.$route.params.id;
-    console.dir(this)
     this.$http.get('https://wlwywlqk.cn/goods/getdata?_id='+id)
     .then((resolve)=>{
       var data = JSON.parse(resolve.data)

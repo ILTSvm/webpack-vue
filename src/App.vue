@@ -49,8 +49,16 @@ export default {
     }
   },
   updated(){
-	  console.dir(11111)
-  	new IScroll('#scorll',{click:true, mouseWheel: true})
+	
+  },
+  mounted(){
+	  this.$on('iscroll',()=>{
+	  console.dir(321)
+		  console.dir(11111)
+  		  new IScroll('#scorll',{click:true, mouseWheel: true})
+	  })
+	  
+    console.dir(this)
   },
   methods: {
     changPage(i) {
