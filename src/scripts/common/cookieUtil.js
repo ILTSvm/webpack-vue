@@ -82,7 +82,7 @@ let _cookie = {
 		var goodInfo = this.getCookie("goods");
 		var goodArr = goodInfo.split("&&&");
 		var goodinfo = [];
-		for(var i = 0;i<goodArr.length;i++){
+		for(var i = 0;i<goodArr.length;i++){zz
 			goodinfo[i] = JSON.parse(goodArr[i]);
 		}
 		return goodinfo;
@@ -91,11 +91,11 @@ let _cookie = {
 	 * 
 	 * @param {Str} goodName
 	 */
-	removeCookie(goodName){
-		setCookie(goodName,"",-1);
+	removeCookie(cookieName){
+		setCookie(cookieName,{},-1);
 	}
-};
-
-
+	
+}
 
 export default _cookie;
+
