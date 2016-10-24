@@ -24,14 +24,8 @@
 			<div class="detail">
 				<div class="head">
 					<span class="title">商品详情介绍</span>
-					<transition name="rotate">
-						<span class="more" @click="show = !show">&gt;</span>
-					</transition>
 				</div>
-				<transition name="slide-fade">
-					<div class="comment" v-if="show">{{comment}}</div>
-				</transition>
-
+					<div class="comment">{{comment}}</div>
 			</div>
    
 		</div>
@@ -41,12 +35,11 @@
 <script>
 import Swiper from './components/common/swiper'
 import IScroll from 'iscroll'
-
+import cookie from './scripts/common/cookieUtil.js'
 export default {
   name: 'detail',
   data(){
     return {
-      show: false,
       carcount: 0,
       swiper:{
         piclists: [],
@@ -59,11 +52,27 @@ export default {
       name: '加载中...',
       price: '加载中...',
       comment: '加载中...',
+      src: ''
     }
   },
   methods: {
     addCar(){
-      this.carcount = this.count;
+      console.dir({
+        _id: this.$route.params.id,
+        name: this.name,
+        count: this.count,
+        price: this.price,
+        src: ''
+      })
+      if(this.count != 0){
+        cookie.setGood({
+        _id: this.$route.params.id,
+        name: this.name,
+        count: this.count,
+        price: this.price,
+        src: ''
+      })
+      }
     },
     onDecrease(){
       if(this.count>0){
@@ -80,10 +89,8 @@ export default {
   components: {
     Swiper,
   },
-  updated(){
+  mouted(){
     console.dir(this)
-    this.$parent.$emit('iscroll')
-    this.$destroy()
   },
   beforeCreate(){
     var id = this.$route.params.id;
@@ -93,7 +100,7 @@ export default {
       for(var i = 0; i < data[0].piclists.length;i++){
         this.swiper.piclists.splice(i,1,'https://wlwywlqk.cn/img/'+data[0].piclists[i]) 
       }
-
+      this.src=data[0].piclists[0]
       this.name = data[0].name
       this.price = data[0].price
       this.comment = data[0].comment
@@ -172,18 +179,6 @@ export default {
       font-family: "微软雅黑";
       margin-top: -.66rem;
 		}
-	}
-	
-	.slide-fade-enter-active {
-		transition: all .3s;
-	}
-	
-	.slide-fade-leave-active {
-		transition: all .8s;
-	}
-	.slide-fade-enter,
-	.slide-fade-leave-active {
-		opacity: 0;
 	}
   a{
     color: #fff;

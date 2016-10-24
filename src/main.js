@@ -13,6 +13,8 @@ Vue.use(VueRouter)
 
 /* eslint-disable no-new */
 //组件
+import cookit from './scripts/common/cookieUtil'
+console.dir(cookit)
 import tab from './App.vue'
 import index from './index.vue'
 import list from './list.vue'
