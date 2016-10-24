@@ -3,14 +3,14 @@
  * 封装cookie,仅用于前端学习购物车列表页之间的传值
  */
 
-var _cookie = {
+let _cookie = {
 	/**
 	 * 
 	 * @param {Str} cookieName
 	 * @param {Object} dataJson
 	 * @param {Number} expiredays
 	 */
-	setCookie:function(cookieName,dataJson,expiredays){
+	setCookie(cookieName,dataJson,expiredays){
 		if(dataJson){
 			if(Object.prototype.toString.call(dataJson)=="[object Object]"){
 				var goodValue = JSON.stringify(dataJson);
@@ -54,7 +54,7 @@ var _cookie = {
 	 * 
 	 * @param {Str} cookieName
 	 */
-	getCookie:function(cookieName){
+	getCookie(cookieName){
 		var cookieValue="";
 	    var strCookies=document.cookie;
 	    //将获取的cookie分隔
@@ -76,18 +76,18 @@ var _cookie = {
 	 * @param {Object} dataJson
 	 * @param {Number} expiredays
 	 */
-	setGood:function(dataJson,expiredays){
+	setGood(dataJson,expiredays){
 		this.setCookie("goods",dataJson,expiredays);
 	},
 	/**
 	 * 
 	 * @param {Str} goodName
 	 */
-	getGood:function(){
+	getGood(){
 		var goodInfo = this.getCookie("goods");
 		var goodArr = goodInfo.split("&&&");
 		var goodinfo = [];
-		for(var i = 0;i<goodArr.length;i++){
+		for(var i = 0;i<goodArr.length;i++){zz
 			goodinfo[i] = JSON.parse(goodArr[i]);
 		}
 		return goodinfo;
@@ -96,15 +96,10 @@ var _cookie = {
 	 * 
 	 * @param {Str} goodName
 	 */
-	removeCookie:function(goodName){
-		
+	removeCookie(cookieName){
+		setCookie(cookieName,{},-1);
 	}
+	
 }
 
-
-//删除某个cookie
-function removeCookie(name){
-    setCookie(name,"",-1);
-}
-
-//增删改查
+export default _cookie;
