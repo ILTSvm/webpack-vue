@@ -1,25 +1,22 @@
 <template>
 
 	<div id = "container">
-
 	    <div id = "scorll">
 	        <router-view></router-view>
 	    </div> 
 
 		<div id = "tab">
 			<div v-for = "tabs in tablist" class = "tablist">
-
 				<router-link :to="tabs.linkTo">
 					{{tabs.text}}
 				</router-link>
-			</div> 
+			</div>
 		</div>
 	</div>
 	<!--v-bind:class="cur == $index ? 'active' : ''"
               v-on:click="changPage($index)"-->
 </template>
 <script>
-
 import IScroll from 'iscroll'
 
 export default {
@@ -48,9 +45,6 @@ export default {
       ]
     }
   },
-  mounted(){
-  	new IScroll('#scorll',{click:true, mouseWheel: true})
-  },
   methods: {
     changPage(i) {
       this.cur = i;
@@ -65,11 +59,13 @@ export default {
 #container{
 	height:100%;
 	width:100%;
+
 	@include flexbox();
 	@include flex-direction(column);
 	#scorll{
 	    @include flex(1);
 	    width:100%;
+	    overflow:hidden;
 	}
 	#tab{
 	    .active{
@@ -88,5 +84,6 @@ export default {
 	    }
 	}
 }
+
 </style>
 
