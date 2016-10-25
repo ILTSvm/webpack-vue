@@ -7,7 +7,7 @@
 			<div class="countbox">
 				<div class="count">
 					<span class="decrease" @click="onDecrease">-</span>
-					<input class="input" v-model.number="count">
+					<input class="input" v-model.number="count>50?count=50:count">
 					<span class="increase" @click="onIncrease">+</span>
 				</div>
 			</div>
@@ -48,29 +48,25 @@ export default {
           pagination: true,
         }
       },
-      count: 0,
       name: '加载中...',
       price: '加载中...',
       comment: '加载中...',
-      src: ''
+      src: '',
+      count: 0
     }
   },
+
   methods: {
     addCar(){
-      console.dir({
-        _id: this.$route.params.id,
-        name: this.name,
-        count: this.count,
-        price: this.price,
-        src: ''
-      })
+      
       if(this.count != 0){
+        this.carcount = this.count
         cookie.setGood({
         _id: this.$route.params.id,
         name: this.name,
         count: this.count,
         price: this.price,
-        src: ''
+        src: this.src
       })
       }
     },
@@ -81,16 +77,17 @@ export default {
     },
     onIncrease(){
       this.count ++;
-      console.dir("sd")
-    }
+    },
+
   },
   computed: {
+
+   
   },
   components: {
     Swiper,
   },
-  mouted(){
-    console.dir(this)
+  updated(){
   },
   beforeCreate(){
     var id = this.$route.params.id;
