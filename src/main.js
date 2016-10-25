@@ -22,6 +22,8 @@ import test from './components/hello2.vue'
 import Detail from './Detail.vue'
 import car from './car.vue'
 import mine from './mine.vue'
+import signin from './signin.vue'
+import signup from './signup.vue'
 const routes = [
 	{
 		path: '/',
@@ -47,6 +49,14 @@ const routes = [
 				path: '/list/Detail/:id',
 				name: 'Detail',
 				component: Detail
+			}, {
+				path: '/signup',
+				name: 'signup',
+				component: signup
+			}, {
+				path: '/signin',
+				name: 'signin',
+				component: signin
 			}
 			//数组结束
 		]
