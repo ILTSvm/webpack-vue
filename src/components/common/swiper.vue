@@ -51,7 +51,9 @@ export default {
       }
   },
   updated(){
-      new Swiper('.swiper-container',this.options)
+      this.$nextTick(()=>{
+          new Swiper('.swiper-container',this.options)
+      })
   }
 }
 </script>
@@ -61,9 +63,5 @@ export default {
     @import "../../styles/lib/swiper.css";
     .swiperimg {
         width: 100%;
-    }
-    
-    .swiper-slide {
-        box-sizing: border-box;
     }
 </style>

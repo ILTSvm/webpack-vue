@@ -27,3 +27,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+	@import "./styles/usage/core/reset.scss";
+ #mine{
+   height: 100%;
+ }
+</style>
