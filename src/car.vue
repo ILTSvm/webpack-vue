@@ -1,7 +1,7 @@
 <template>
 	<div class = "car-box">
 		<div class = "hasNo-good" v-if = "hasGood==false">没有物品</div>
-		<div class = "has-good" v-if = "hasGood">
+		<div class = "has-good" v-if = "hasGood==true">
 			<div class = "car-row">
 				<div class = "car-img"><span>商品</span></div>
 				<div class = "car-name"><span>名称</span></div>
@@ -21,7 +21,7 @@
 				<div class = "car-total"><span>{{(good.count*good.price).toFixed(2)}}</span></div>
 				<div class = "car-delete"><span @click = "deleteGood(good)">移除</span></div>
 			</div>
-			<div class = "pay"><span></span><span></span><p>提交订单</p><div>
+			<div class = "pay"><span><input type = "checkbox" />全选</span><span>总价：</span><p>提交订单</p><div>
 		</div>
 	</div>
 </template>
@@ -32,12 +32,12 @@
 			return{
 				goodinfo:[],
 				goodCount:0,
-				hasGood:false
+				hasGood:false 
 			}
 		},
 		mounted(){
 			this.goodinfo= _cookie.getGood();
-			if(this.goodinfo.length!=0){
+			if(this.goodinfo.length>0){
 				this.hasGood=true;
 				this.goodCount=this.goodinfo.length;
 			}
@@ -48,14 +48,12 @@
 		        good.count --;
 		        _cookie.setGood(good);
 		        if(good.count==1){
+		            _cookie.removeGood(good._id);
 		        	this.goodCount--;
+		        	if(this.goodCount==0){
+                        this.hasGood=false;
+                    }
 		        }
-		      }else{
-		      	//删除商品
-//		      	_cookie.removeGood(good._id);
-//				if(this.goodCount==0){
-//					this.hasGood=false;
-//				}
 		      }
 		    },
 		    addCount(good){
@@ -65,10 +63,8 @@
 		      }
 		    },
 		    deleteGood(good){
-//		    	console.log(1);
 				good.count = 0;
-				_cookie.setGood(good);
-//		    	_cookie.removeGood(good._id);
+		    	_cookie.removeGood(good._id);
 				this.goodCount--;
 				if(this.goodCount==0){
 					this.hasGood=false;

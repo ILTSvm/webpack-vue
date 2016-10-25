@@ -6,7 +6,7 @@ let _cookie = {
 	 * @param {Object} dataJson
 	 * @param {Number} expiredays
 	 */
-	setCookie(cookieName,dataJson,expiredays){
+	setCookie(cookieName,dataJson){
 		if(dataJson){
 			if(Object.prototype.toString.call(dataJson)=="[object Object]"){
 				var goodValue = JSON.stringify(dataJson);
@@ -14,7 +14,7 @@ let _cookie = {
 				console.error("the value must be an object");
 			}
 		}else{
-			console.error("the value can`t be empty")
+			console.error("the value can`t be empty");
 		}
 
 		if(this.getCookie(cookieName)){
@@ -42,7 +42,7 @@ let _cookie = {
 			cookieValue = goodValue;
 		}
 	    var date=new Date();
-	    date.setDate(date.getDate()+expiredays);
+	    date.setDate(date.getDate()+30);
 
  		document.cookie=cookieName+"="+encodeURIComponent(cookieValue)+";expires="+date;
 	},
@@ -53,7 +53,7 @@ let _cookie = {
 	getCookie(cookieName){
 		var cookieValue="";
 	    var strCookies=document.cookie;
-	var arrCookies=strCookies.split("; "); 
+		var arrCookies=strCookies.split("; "); 
 	    for(var i=0;i<arrCookies.length;i++){
 	   
 	        var arrItem=arrCookies[i].split("=");
@@ -70,8 +70,8 @@ let _cookie = {
 	 * @param {Object} dataJson
 	 * @param {Number} expiredays
 	 */
-	setGood(dataJson,expiredays){
-		this.setCookie("goods",dataJson,expiredays);
+	setGood(dataJson){
+		this.setCookie("goods",dataJson);
 	},
 	/**
 	 * 
@@ -96,6 +96,30 @@ let _cookie = {
 	 */
 	removeCookie(cookieName){
 		setCookie(cookieName,{},-1);
+	},
+	/**
+	 * @param {Str}goodId
+	 */
+	removeGood(goodId){
+	    var goodInfo = this.getCookie("goods");
+	    if(goodInfo == ""){
+	    	removeCookie("goods");
+			return false;
+		}else{
+			var oldGoodArr = goodInfo.split("&&&");
+			var goodinfo = [];
+			for(var i = 0;i<oldGoodArr.length;i++){
+				goodinfo[i] = JSON.parse(oldGoodArr[i]);
+				if(goodinfo[i]._id==goodId){
+					oldGoodArr.splice(i,1);
+					i--;
+				}
+			}
+			var newGoodStr = oldGoodArr.join("&&&");
+			var date=new Date();
+	    	date.setDate(date.getDate()+30);
+			document.cookie="goods="+newGoodStr+";expires="+date;
+		}
 	}
 	
 }
