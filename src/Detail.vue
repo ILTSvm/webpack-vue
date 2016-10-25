@@ -19,7 +19,6 @@
         </router-link>
 
         <span class="add" @click="addCar">加入购物车</span>
-        <span class="buy">立即购买</span>
       </div>
 			<div class="detail">
 				<div class="head">
@@ -36,6 +35,8 @@
 import Swiper from './components/common/swiper'
 import IScroll from 'iscroll'
 import cookie from './scripts/common/cookieUtil.js'
+var sum = 0
+var id = ''
 export default {
   name: 'detail',
   data(){
@@ -58,16 +59,18 @@ export default {
 
   methods: {
     addCar(){
-      
+      this.carcount = sum+this.count
       if(this.count != 0){
-        this.carcount = this.count
+        console.dir(id)
         cookie.setGood({
-        _id: this.$route.params.id,
-        name: this.name,
-        count: this.count,
-        price: this.price,
-        src: this.src
+          _id: id,
+          name: this.name,
+          count: this.count,
+          price: this.price,
+          src: this.src
       })
+      }else{
+        cookie.removeGood(id)
       }
     },
     onDecrease(){
@@ -86,10 +89,22 @@ export default {
   components: {
     Swiper,
   },
-  updated(){
+  mounted(){
+    var goods = cookie.getGood()
+    var len = goods.length
+    sum = 0
+    for(var i = 0; i < len; i++){
+      
+      if(goods[i]._id == id){
+        this.count = goods[i].count
+      }else{
+        sum += goods[i].count
+      }
+    }
+    this.carcount = sum + this.count
   },
   beforeCreate(){
-    var id = this.$route.params.id;
+    id = this.$route.params.id;
     this.$http.get('https://wlwywlqk.cn/goods/getdata?_id='+id)
     .then((resolve)=>{
       var data = JSON.parse(resolve.data)
