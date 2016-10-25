@@ -20,6 +20,7 @@ import commonUtil from "./scripts/common/commonUtil";
 
 /* eslint-disable no-new */
 //组件
+
 import tab from './App.vue'
 import index from './index.vue'
 import list from './list.vue'
@@ -27,6 +28,8 @@ import test from './components/hello2.vue'
 import Detail from './Detail.vue'
 import car from './car.vue'
 import mine from './mine.vue'
+import signin from './signin.vue'
+import signup from './signup.vue'
 const routes = [
 	{
 		path: '/',
@@ -52,6 +55,14 @@ const routes = [
 				path: '/list/Detail/:id',
 				name: 'Detail',
 				component: Detail
+			}, {
+				path: '/signup',
+				name: 'signup',
+				component: signup
+			}, {
+				path: '/signin',
+				name: 'signin',
+				component: signin
 			}
 			//数组结束
 		]

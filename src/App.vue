@@ -6,17 +6,17 @@
 
 		<div id = "tab">
 			<div v-for = "tabs in tablist" class = "tablist">
-
 				<router-link :to="tabs.linkTo">
 					{{tabs.text}}
 				</router-link>
-			</div> 
+			</div>
 		</div>
 	</div>
 	<!--v-bind:class="cur == $index ? 'active' : ''"
               v-on:click="changPage($index)"-->
 </template>
 <script>
+
 import Vue from 'vue'
 import IScroll from 'iscroll'
 
@@ -51,15 +51,9 @@ export default {
     }
   },
 
-
-  mounted(){
-  	var that = this;
-  	Vue.nextTick(function(){
-
-  	});
+  updated(){
   },
-  updated() {
-
+  mounted(){
   },
   
   methods: {
@@ -76,6 +70,7 @@ export default {
 #container{
 	height:100%;
 	width:100%;
+
 	@include flexbox();
 	@include flex-direction(column);
 	#scorll{

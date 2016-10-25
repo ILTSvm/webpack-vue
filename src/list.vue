@@ -15,6 +15,9 @@ export default {
 	components: {
    		goodlist
     },
+
+
+
     data(){
     	return {
     		navlist:[
