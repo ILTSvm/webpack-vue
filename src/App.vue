@@ -1,7 +1,6 @@
 <template>
-
 	<div id = "container">
-	    <div id = "scorll">
+	    <div id="scorll">
 	        <router-view></router-view>
 	    </div> 
 
@@ -17,13 +16,19 @@
               v-on:click="changPage($index)"-->
 </template>
 <script>
+
+import Vue from 'vue'
 import IScroll from 'iscroll'
+
+// import commonUtil from "./scripts/common/commonUtil";
+// commonUtil.myScroll();
 
 export default {
   name: 'tab',
   data () {
     return {
       cur:0,
+      appScroll: '',
       tablist:[
       	{
       		text:'首页',
@@ -45,12 +50,12 @@ export default {
       ]
     }
   },
+
   updated(){
-	
   },
   mounted(){
-	  
   },
+  
   methods: {
     changPage(i) {
       this.cur = i;
@@ -98,6 +103,5 @@ export default {
 	    }
 	}
 }
-
 </style>
 

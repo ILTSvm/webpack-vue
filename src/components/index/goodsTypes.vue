@@ -1,191 +1,172 @@
 <template>
-  <div class="goods-types">
-    <nav class="index-navbar">
-      <li v-for="gt in goodsType">
-        <img :src="gt.imgUrl" alt="">
-        <span>{{gt.gtText}}</span>
-      </li>
-    </nav>
+  <div id="gt_scroll">
+    <div class="scroll-wrap">
+      <!-- <headerHtml></headerHtml> -->
+      <div id="goTp" class="goods-types">
+        <nav class="index-navbar">
+          <li v-for="gt in goodsType">
+            <img :src="gt.imgUrl" alt="">
+            <span>{{gt.gtText}}</span>
+          </li>
+        </nav>
 
-    <div class="goods-gloable">
-      <h3 class="goods-til"><img :src="goodGlobal" alt=""></h3>
-
-      <div v-for="goodsCt in goodContent">
-        <div v-bind:class="goodsCt.classes">
-          <div v-if="goodsCt.topTil" class="goodtype-til"><img :src="goodsCt.topTil" alt=""></div>
-          <div class="hotGoods" v-if="goodsCt.hotGoods">
-            <img :src="goodsCt.hotGoods" alt="">
-          </div>
-          <nav class="good-list">
-            <li v-if="goodsCt.bigShow" class="bigShow">
-              <img :src="goodsCt.bigShow" alt="">
-            </li>
-            <div class="goodli-wrap">
-              <li v-for="goodli in goodsCt.goodList">
-                <img :src="goodli.imgUrl" alt="">
-                <div v-if="goodli.text">
-                  <span>{{goodli.text}}</span>
-                  <span><i>{{goodli.price}}</i></span>
-                </div> 
-              </li>
+        <div class="goods-gloable">
+          <h3 class="goods-til"><img :src="goodGlobal" alt=""></h3>
+          <div v-for="goodsCt in goodContent">
+            <div v-bind:class="goodsCt.classes">
+              <div v-if="goodsCt.topTil" class="goodtype-til"><img :src="goodsCt.topTil" alt=""></div>
+              <div class="hotGoods" v-if="goodsCt.hotGoods">
+                <img :src="goodsCt.hotGoods" alt="">
+              </div>
+              <nav class="good-list">
+                <li v-if="goodsCt.bigShow" class="bigShow">
+                  <img :src="goodsCt.bigShow" alt="">
+                </li>
+                <div class="goodli-wrap">
+                  <li v-for="goodli in goodsCt.goodList">
+                    <img :src="goodli.imgUrl" alt="">
+                    <div v-if="goodli.text">
+                      <span>{{goodli.text}}</span>
+                      <span><i>{{goodli.price}}</i></span>
+                    </div> 
+                  </li>
+                </div>
+              </nav>
             </div>
-          </nav>
+          </div>
+          <!-- 上拉加载更多 -->
+          <div class="foot-more">
+            <img v-bind:src="imgArrow"/>
+            <span>上拉加载更多...</span>
+          </div>
+
         </div>
       </div>
     </div>
+    
   </div>
+  
 </template>
 
 <script>
+ import headerHtml from './header';
+ import Vue from 'vue';
+ import commonUtil from "../../scripts/common/commonUtil";
+ import IScroll from 'iscroll';
   export default {
-    name: 'goods-types',
     data(){
       return {
-        goodsType: [
-          {
-            imgUrl: '../../../static/images/890a4df11092.png',
-            gtText: '分类查询'
-          },
-          {
-            imgUrl: '../../../static/images/392233b799f2.png',
-            gtText: '购物车'
-          },
-          {
-            imgUrl: '../../../static/images/7a66b9f3412a.png',
-            gtText: '会员中心'
-          },
-          {
-            imgUrl: '../../../static/images/9da6772bb68b.png',
-            gtText: '我的关注'
-          }
-        ],
+        getCountData: 0,
+        imgArrow: require('../../assets/arrow.png'),
+        goodsType: [],
         goodGlobal: '../../../static/images/24a5386981fd.jpg',
-
-        goodContent: [
-          {
-            classes: 'good-content good-content1 zhicai',
-            topTil:'../../../static/images/4867c79e7c7f.png',
-            hotGoods: '../../../static/images/430d38032ea4.jpg',
-            goodList: [
-              {
-                imgUrl: '../../../static/images/d7a20852acce.jpg'
-              },
-              {
-                imgUrl: '../../../static/images/7768988c35f4.jpg'
-              },
-              {
-                imgUrl: '../../../static/images/be979df41a1d.jpg'
-              }
-            ]
-          },
-          {
-            classes: 'good-content good-content1 newproduct',
-            topTil:'../../../static/images/307e95179721.png',
-            goodList: [
-              {
-                imgUrl: '../../../static/images/cc31385b5219.jpg@235w_278h_100Q.jpg',
-                text: '【保税仓发货】pororo 婴儿香皂 (婴儿爽身粉味）100g',
-                price: '￥63.50'
-              },
-              {
-                imgUrl: '../../../static/images/e75865a432e2.jpg@235w_278h_100Q.jpg',
-                text: '[热销产品]韩芳肌蜜蜗牛原液幼嫩美手膜50g',
-                price: '￥99'
-              },
-              {
-                imgUrl: '../../../static/images/7fe6cab117b6.jpg@235w_278h_100Q.jpg',
-                text: '【保税仓发货】pororo 婴儿香皂 (婴儿爽身粉味）100g',
-                price: '￥99.50'
-              }
-            ]
-          },
-          {
-            classes: 'good-content good-content2 beautify',
-            topTil:'../../../static/images/907078587fec.png',
-            bigShow: '../../../static/images/45e8fd710b86.jpg',
-            goodList: [
-              {
-                imgUrl: '../../../static/images/b07ef155cc34.jpg',
-              },
-              {
-                imgUrl: '../../../static/images/f9ee999d84ab.jpg',
-              },
-              {
-                imgUrl: '../../../static/images/4fb72cabfea0.jpg',
-              },
-              {
-                imgUrl: '../../../static/images/81543ec258e0.jpg'
-              }
-            ]
-          },
-          {
-            classes: 'good-content good-content2 foodprotect',
-            topTil:'../../../static/images/524664bceff4.jpg',
-            bigShow: '../../../static/images/4c429c5d2494.jpg',
-            goodList: [
-              {
-                imgUrl: '../../../static/images/3eeb6f441654.jpg',
-              },
-              {
-                imgUrl: '../../../static/images/70b842eb6096.jpg',
-              },
-              {
-                imgUrl: '../../../static/images/b956653e8b8e.jpg',
-              },
-              {
-                imgUrl: '../../../static/images/e734adc68933.jpg'
-              }
-            ]
-          },
-          {
-            classes: 'good-content goodad',
-            goodList: [
-              {
-                imgUrl: '../../../static/images/2aca656bf408.jpg',
-              },
-              {
-                imgUrl: '../../../static/images/897a5f44bf1b.jpg',
-              }
-            ]
-          },
-          {
-            classes: 'good-content good-content3 hotProducts',
-            topTil:'../../../static/images/5f6263a6a7b2.png',
-            hotGoods: '../../../static/images/6e35e0752220.jpg',
-            goodList: [
-              {
-                imgUrl: '../../../static/images/32ca5a8a1abd.jpg@940w_1112h_100Q.jpg',
-                text: '【保税仓发货】pororo 婴儿香皂 (婴儿爽身粉味）100g',
-                price: '￥63.50'
-              },
-              {
-                imgUrl: '../../../static/images/32ca5a8a1abd.jpg@940w_1112h_100Q.jpg',
-                text: '【保税仓发货】pororo 婴儿香皂 (婴儿爽身粉味）100g',
-                price: '￥63.50'
-              },
-              {
-                imgUrl: '../../../static/images/32ca5a8a1abd.jpg@940w_1112h_100Q.jpg',
-                text: '【保税仓发货】pororo 婴儿香皂 (婴儿爽身粉味）100g',
-                price: '￥63.50'
-              },
-              {
-                imgUrl: '../../../static/images/32ca5a8a1abd.jpg@940w_1112h_100Q.jpg',
-                text: '【保税仓发货】pororo 婴儿香皂 (婴儿爽身粉味）100g',
-                price: '￥63.50'
-              }
-            ]
-          }
-        ]
-
+        goodBigType: [],
+        goodContent: [],
+        guessLove: []
       }
     },
-    ready: function(){
-      console.log(1);
+    components: {
+      headerHtml
+    },
+    updated(){
+    },
+    mounted: function(){
+      // console.log("mounted");
+      let that = this;
 
-      setTimeout(function(){
-        new IScroll('#index');
-      }, 2000);
+      that.$http.get('/syhIndex/indexData').then((res) => {
+        that.goodsType = res.data.goodsType;
+        that.goodContent = res.data.goodContent;
+        that.goodBigType = res.data.goodBigType;
+        // console.log(res.data.goodContent);
+        Vue.nextTick(function() {
+            commonUtil.isAllLoaded('#gt_scroll', function() {
+                var myScroll = new IScroll('#gt_scroll', {
+                    probeType: 3,
+                    mouseWheel: true,
+                    click: true
+                });
+                myScroll.on('scrollEnd', function() {
+                    var self = this;
+                    var maxY = this.maxScrollY - this.y;
+                    if (maxY > -35 && maxY < 0) {
+                        myScroll.scrollTo(0, self.maxScrollY + 35);
+                        // foot.removeClass('down')
+                    } else if (maxY >= 0) {
+                        // console.log("up");
+                        if(that.getCountData <= 2){
+                          for(var i=0; i<that.goodBigType.length; i++){
+                            var dataUrl =  "https://wlwywlqk.cn/goods/search?search="+that.goodBigType[i].type+"&pagesize=4";
+                            let bigImg = that.goodBigType[i].imgUrl;
+                            that.$http.get(dataUrl).then((res) => {
+                                var getCurdata = res.data;
+                                var newData = {
+                                classes: 'good-content good-content3 hotProducts',
+                                hotGoods: '../../../static/images/6e35e0752220.jpg',
+                                goodList: []
+                              };
+                              newData.hotGoods = bigImg;
+                              var arrCurData = JSON.parse(getCurdata);
+                              (function(){
+                                for(var j=0; j<4; j++){
+                                  let obj = {};
+                                  obj.imgUrl = "https://wlwywlqk.cn/img/"+arrCurData[j].piclists[0];
+                                  obj.text = arrCurData[j].name;
+                                  obj.price = "￥"+arrCurData[j].price;
+                                  newData.goodList.push(obj);
+                                }
+                              })()
+                              that.goodContent.push(newData);
+                              // console.log(newData);
+                              Vue.nextTick(function() {
+                                  commonUtil.isAllLoaded('#gt_scroll', function(){
+                                  myScroll.refresh();
+                                  // self.maxScrollY += ;
+                                })
+                              });
+                            });
+                          };
+                          that.getCountData ++ ;
+                        }else if(that.getCountData == 3){
+                            var dataUrl =  "https://wlwywlqk.cn/goods/getData?&pagesize=15";
+                            let countIndex = i;
+                            that.$http.get(dataUrl).then((res) => {
+                                var getCurdata = res.data;
+                                var newData = {
+                                  classes: 'good-content good-content4 guessLove',
+                                  topTil: '../../../static/images/ec956fe5b6f8.png',
+                                  goodList: []
+                              };
+
+                              var arrCurData = JSON.parse(getCurdata);
+                                for(var j=0; j<arrCurData.length; j++){
+                                  let obj = {};
+                                  obj.imgUrl = "https://wlwywlqk.cn/img/"+arrCurData[j].piclists[0];
+                                  obj.text = arrCurData[j].name;
+                                  obj.price = "￥"+arrCurData[j].price;
+                                  newData.goodList.push(obj);
+                                }
+                              that.getCountData ++ ;
+                              that.goodContent.push(newData);
+                              Vue.nextTick(function() {
+                                  commonUtil.isAllLoaded('#gt_scroll', function(){
+                                  myScroll.refresh();
+                                  self.maxScrollY += 43;
+                                  // myScroll.scrollTo(0, self.maxScrollY + 35);
+                                })
+                              });
+                            })
+                        }
+                    }
+                });
+            });
+        });
+      });
+    },
+    methods: {
+    
     }
+
   }
 </script>
 
@@ -194,6 +175,35 @@
   @import '../../styles/usage/page/index.scss';
   ul,li{
     list-style: none;
+  }
+  #gt_scroll{
+    width: 100%;
+    height: 100%;
+    .scroll-wrap{
+      width: 100%;
+    }
+  }
+  header{
+    @include flexbox();
+  }
+
+  @mixin spanNamePrice(){
+    span:first-child{
+      display: block;
+      height: 40px;
+      line-height: 20px;
+      font-size: 12px;
+      color: #8f8f94;
+      overflow: hidden;
+    }
+    span:last-child{
+      display: block;
+      text-align: center;
+      i{
+        color: #a52e8d;
+        font-size: 12px;
+      }
+    }
   }
   .goods-types{
     @include flexbox();
@@ -240,7 +250,7 @@
       .good-content{
         width: 100%;
         padding: 6px 2px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         background: #FFF;
         .goodtype-til{
           padding-bottom: 2px;
@@ -296,22 +306,7 @@
             padding-bottom: 0;
             border: 1px solid #ffcefc;
             margin: 0 2px;
-            span:first-child{
-              display: block;
-              height: 40px;
-              line-height: 20px;
-              font-size: 12px;
-              color: #8f8f94;
-              overflow: hidden;
-            }
-            span:last-child{
-              display: block;
-              text-align: center;
-              i{
-                color: #a52e8d;
-                font-size: 12px;
-              }
-            }
+            @include spanNamePrice();
           }
         }
       }
@@ -367,6 +362,7 @@
             @include flex();
             padding: 0 4px;
             img{
+              padding: 10px 4px 4px 0;
               width: 100%;
             }
             span:first-child{
@@ -387,7 +383,36 @@
             }
           }
         }
-
+      }
+      .good-content4{
+        padding: 0;
+        background: transparent;
+        .goodtype-til{
+          padding: 6px 0;
+          margin-bottom: 5px;
+          background: #FFF;
+        }
+        .good-list{
+          padding: 0;
+          .goodli-wrap{
+            @include flexbox();
+            @include flex(3);
+            width: 100%;
+            @include flex-direction(row);
+            @include flex-wrap(wrap);
+            li{
+              background: #FFF;
+              padding: 10px;
+              width: 32%;
+              margin: 0  2px 5px 3px;
+              img{
+                width: 100%;
+              }
+              @include spanNamePrice();
+            }
+          }
+        }
+        
       }
 
       .goodad{
@@ -416,5 +441,20 @@
       }
     }
   }
-
+  .foot-more,.head{
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+    text-align: center;
+    img{
+      display: inline-block;
+      width: 16px;
+      transition: transform 150ms;
+      -webkit-transition: transform 150ms;
+    }
+  }
+  .down {
+      transform: rotate(180deg) !important;
+      -webkit-transform: rotate(180deg) !important;
+  }
 </style>

@@ -1,9 +1,10 @@
 <template>
 	<div id="detail">
-		<div>
-			<swiper :swiper="swiper"></swiper>
+		<div class="container">
+			<div>
+        <swiper :swiper="swiper"></swiper>
 			<div class="name">{{name}}</div>
-			<div class="price">{{'￥'+price}}</div>
+			<span class="price">{{'￥'+price}}</span>
 			<div class="countbox">
 				<div class="count">
 					<span class="decrease" @click="onDecrease">-</span>
@@ -11,24 +12,25 @@
 					<span class="increase" @click="onIncrease">+</span>
 				</div>
 			</div>
-         <div class="gobuy">
-        <router-link :to="{path:'/car'}">
-          <div class="car"><img src="./assets/car.png">
-            <span class="carcount" v-show="carcount">{{carcount}}</span>
-          </div>
-        </router-link>
 
-        <span class="add" @click="addCar">加入购物车</span>
-        <span class="buy">立即购买</span>
-      </div>
 			<div class="detail">
 				<div class="head">
 					<span class="title">商品详情介绍</span>
 				</div>
-					<div class="comment">{{comment}}</div>
+				<div class="comment">{{comment}}</div>
 			</div>
-   
-		</div>
+      </div>
+    </div>
+      <div class="gobuy">
+				<router-link :to="{path:'/car'}">
+					<div class="car"><img src="./assets/car.png">
+						<span class="carcount" v-show="carcount">{{carcount}}</span>
+					</div>
+				</router-link>
+
+				<span class="add" @click="addCar">加入购物车</span>
+			</div>
+
 	</div>
 </template>
 
@@ -36,6 +38,8 @@
 import Swiper from './components/common/swiper'
 import IScroll from 'iscroll'
 import cookie from './scripts/common/cookieUtil.js'
+var sum = 0
+var id = ''
 export default {
   name: 'detail',
   data(){
@@ -58,16 +62,18 @@ export default {
 
   methods: {
     addCar(){
-      
+      this.carcount = sum+this.count
       if(this.count != 0){
-        this.carcount = this.count
+        console.dir(id)
         cookie.setGood({
-        _id: this.$route.params.id,
-        name: this.name,
-        count: this.count,
-        price: this.price,
-        src: this.src
+          _id: id,
+          name: this.name,
+          count: this.count,
+          price: this.price,
+          src: this.src
       })
+      }else{
+        cookie.removeGood(id)
       }
     },
     onDecrease(){
@@ -86,10 +92,26 @@ export default {
   components: {
     Swiper,
   },
-  updated(){
+  mounted(){
+    var goods = cookie.getGood()
+    var len = goods.length
+    sum = 0
+    for(var i = 0; i < len; i++){
+      
+      if(goods[i]._id == id){
+        this.count = goods[i].count
+      }else{
+        sum += goods[i].count
+      }
+    }
+    this.carcount = sum + this.count
+
+
+
   },
+
   beforeCreate(){
-    var id = this.$route.params.id;
+    id = this.$route.params.id;
     this.$http.get('https://wlwywlqk.cn/goods/getdata?_id='+id)
     .then((resolve)=>{
       var data = JSON.parse(resolve.data)
@@ -100,6 +122,10 @@ export default {
       this.name = data[0].name
       this.price = data[0].price
       this.comment = data[0].comment
+
+    this.$nextTick(()=>{
+     new IScroll('.container',{click: true,mouseWheel: true })
+    })
     },(reject)=>{
       console.dir(reject)
     })
@@ -121,7 +147,6 @@ export default {
 	.price {
 		@include border(1px, #a52e8d, solid, .05rem);
 		padding: .06rem .08rem;
-		display: inline-block;
 		background: #a52e8d;
 		margin: 0px .16rem;
 		color: #fff;
@@ -167,62 +192,70 @@ export default {
 			font-size: .14rem;
 			font-family: "微软雅黑";
 			border-bottom: 1px solid #ddd;
-      margin-bottom: .66rem;
+			
 		}
 		.comment {
 			padding: .16rem;
-      font-size: .12rem;
-      font-family: "微软雅黑";
-      margin-top: -.66rem;
+			font-size: .12rem;
+			font-family: "微软雅黑";
 		}
 	}
-  a{
-    color: #fff;
-  }
-	.gobuy{
-    background: #fefefe;
-    bottom: 44px;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    width: 100%;
-    color: #fff;
-    font-family: "微软雅黑";
-    font-size: .14rem;
+	
+	a {
+		color: #fff;
+	}
+	
+	.gobuy {
+		background: #fefefe;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ddd;
+		width: 100%;
+		color: #fff;
+		font-family: "微软雅黑";
+		font-size: .14rem;
+		@include flexbox();
+		@include justify-content(space-around);
+    height: .38rem;
+		.car {
+			position: relative;
+			img {
+				width: .38rem;
+				height: .38rem;
+			}
+			.carcount {
+				top: -.01rem;
+				left: 50%;
+				background: red;
+				display: inline-block;
+				box-shadow: 3px 3px 5px #555;
+				height: auto;
+				padding: 0 .02rem;
+				border-radius: 50%;
+				font-size: 10px;
+				position: absolute;
+			}
+		}
+		.add {}
+		span {
+			display: inline-block;
+			background: #FF4040;
+			line-height: .20rem;
+			padding: .04rem;
+			margin: .04rem;
+			border-radius: .06rem;
+		}
+		.buy {
+			background: #FF4040;
+		}
+	}
+  #detail{
     @include flexbox();
-    @include justify-content(space-around);
-    .car{
-      position: relative;
-      img{
-      width: .38rem;
-      height: .38rem;
-      }
-      .carcount{
-        top: -.01rem;
-        left: 50%;
-        background: red;
-        display: inline-block;
-        box-shadow: 3px 3px 5px #555;
-        height: auto;
-        padding: 0 .02rem;
-        border-radius: 50%;
-        font-size: 10px;
-        position: absolute;
-      }
-    }
-    .add{
-      
-    }
-    span{
-      display: inline-block;
-      background: #FF4040;
-      line-height: .20rem;
-      padding: .04rem;
-      margin: .04rem;
-      border-radius: .06rem;
-    }
-    .buy{
-      background: #FF4040;
-    }
-
+    @include flex-direction(column);
+    height: 100%;
+  }
+  .container{
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
   }
 </style>

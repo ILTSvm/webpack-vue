@@ -91,6 +91,7 @@ export default {
   }
 }
 </script>
+
 <style lang = "scss" scoped>
 	@charset "utf-8";
     @import "./styles/usage/core/reset.scss";
@@ -186,4 +187,5 @@ export default {
 		  }
 		}
 	}
+
 </style>

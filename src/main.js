@@ -11,6 +11,13 @@ Vue.use(resource)
 
 Vue.use(VueRouter)
 
+// 自定义指令
+
+import zeptoJs from "n-zepto";
+
+import commonUtil from "./scripts/common/commonUtil";
+// commonUtil.myScroll();
+
 /* eslint-disable no-new */
 //组件
 

@@ -9,10 +9,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "swiper": "^3.4.0",
     "vue": "^2.0.1",
-    "vue-router": "^2.0.1",
     "vue-resource": "^1.0.3",
-    "swiper": "^3.4.0"
+    "vue-router": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
