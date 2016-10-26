@@ -55,17 +55,18 @@ const routes = [
 				path: '/list/Detail/:id',
 				name: 'Detail',
 				component: Detail
-			}, {
-				path: '/signup',
-				name: 'signup',
-				component: signup
-			}, {
-				path: '/signin',
-				name: 'signin',
-				component: signin
 			}
 			//数组结束
 		]
+	},
+	{
+		path: '/signup',
+		name: 'signup',
+		component: signup
+	}, {
+		path: '/signin',
+		name: 'signin',
+		component: signin
 	}
 ]
 const router = new VueRouter({

@@ -9,7 +9,7 @@
 <script>
 
 import goodlist from './components/common/goodlist.vue'
-
+import IScroll from 'iscroll'
 export default {
 	name:'list',
 	components: {
@@ -26,7 +26,7 @@ export default {
     			{text:"筛选"}
     		]
     	}
-    }
+    },
 }
 </script>
 <style lang = "scss" scoped>
@@ -39,6 +39,8 @@ export default {
 
   #big-container{
       width:100%;
+      height:100%;
+      overflow: hidden;
       @include flexbox();
       @include flex-direction(column);
       .navlist{

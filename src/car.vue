@@ -24,7 +24,7 @@
 	                            	<span class="increase" @click="addCount(good)">+</span>
 	                        	</div>
 	                        </div>
-	                        <div class = "car-delete"><span class = "iconfont" @click = "deleteGood(good)">&#xe6b4;</span></div>
+	                        <div class = "car-delete"><span class = "iconfont" @click = "deleteGood(good)">&#xe74b;</span></div>
 	                    </div>
                     </div>
 
@@ -64,7 +64,7 @@
 		      if(good.count>0){
 		        good.count --;
 		        _cookie.setGood(good);
-		        if(good.count==1){
+		        if(good.count==0){
 		            _cookie.removeGood(good._id);
 		        	this.goodCount--;
 		        	if(this.goodCount==0){
