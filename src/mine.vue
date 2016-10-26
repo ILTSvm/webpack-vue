@@ -9,12 +9,13 @@
 		<div class="section-box">
 			<div class="section">
 				<div class = "login-box">
-					<router-link to = "./signin"  v-if = "isLogin==false">登录\注册</router-link>
+					<router-link to = "signin"  v-if = "isLogin==false">登录\注册</router-link>
 					<div class = "user-box" v-if = "isLogin==true">
 						<div class = "photo">
 							<img src = "../static/images/photo.jpg">
 						</div>
 						<p>{{username}}</p>
+						<p @click = "exit" class = "exit">注销</p>
 					</div>
 				</div>
 				<div class = "orders">
@@ -100,7 +101,10 @@ export default {
     }
   },
   methods: {
-    
+    exit(){
+    	_cookie.removeCookie("username");
+    	this.isLogin =false;
+    }
   },
   computed: {
   },
@@ -114,14 +118,14 @@ export default {
   	var loginStr = _cookie.getCookie("username");
   	if(loginStr!=''&&loginStr){
   		var loginInfo = JSON.parse(loginStr);
-  		isLogin = true;
-  		this.username="syh1100_"+loginInfo.username;
+  		this.isLogin = true;
+  		this.username="syh1100_"+loginInfo.name;
   	}else{
   		this.isLogin = false;
   	}
   },
   updated(){
-  	var myScroll = new IScroll('.section-box',{click:true});
+  	var myScroll = new IScroll('.section-box',{click:true,mouseWheel: true});
   	console.log(0);
   },
   beforeCreate(){
@@ -173,10 +177,25 @@ export default {
 	    	height:2.2rem;
 			width:100%;
 			background:#a42e8e;
+			padding-top:30px;
+			p{
+				text-align: center;
+				height:30px;
+				line-height:30px;
+				color:#fff;
+				font-size:.14rem;
+			}
+			.exit{
+				border-radius: .1rem;
+				width:.6rem;
+				margin:0 auto;
+				border:.01rem solid #fff;
+			}
 	    	.photo{
 	    		width:1rem;
 	    		height:1rem;
-	    		margin:0 auto;
+	    		
+	    		margin:0 auto 15px;
 	    		border-radius:50%;
 	    		overflow:hidden;
 	    		

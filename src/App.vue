@@ -7,7 +7,7 @@
 		<div id = "tab">
 			<div v-for = "tabs in tablist" class = "tablist">
 				<router-link :to="tabs.linkTo">
-					{{tabs.text}}
+					<p :class = "tabs.className"></p>
 				</router-link>
 			</div>
 		</div>
@@ -32,20 +32,20 @@ export default {
       tablist:[
       	{
       		text:'首页',
-      		src:'',
-      		linkTo:'/index'
+      		className:'iconfont icon-shouye',
+      		linkTo:'index'
       	},{
       		text:'闪耀商城',
-      		src:'',
-      		linkTo:'/list'
+      		className:'iconfont icon-dianpu',
+      		linkTo:'list'
       	},{
       		text:'购物车',
-      		src:'',
-      		linkTo:'/car'
+      		className:'iconfont icon-gouwuche',
+      		linkTo:'car'
       	},{
       		text:'会员中心',
-      		src:'',
-      		linkTo:'/mine'
+      		className:'iconfont icon-yonghu',
+      		linkTo:'mine'
       	}
       ]
     }
@@ -57,15 +57,15 @@ export default {
   },
   
   methods: {
-    changPage(i) {
-      this.cur = i;
-    }
+
   }
 }
 </script>
 
 <style lang = "scss" scoped>
-@import './styles/usage/page/index.scss';
+	@charset "utf-8";
+    @import "./styles/usage/core/reset.scss";
+    @import "./styles/lib/iconfont/iconfont.css";
 
 #container{
 	height:100%;
@@ -80,16 +80,14 @@ export default {
 		overflow: hidden;
 	}
 	#tab{
-	    .active{
-	        background:#fff;
-	    }
 	    @include flexbox();
 	    height:.44rem;
 	    width:100%;
 	    color:#fff;
 	    .tablist{
-	        border:1px solid #000;
-	        background:#a42e8e;
+	    	font-size:.20rem;
+	        border-top:.01rem solid #000;
+	        background:#fff;
 	        height:44px;
 	        line-height:44px;
 	        @include flex(1);
@@ -98,7 +96,7 @@ export default {
 	        	width:100%;
 	        	height:100%;
 	        	text-align:center;
-	            color:#fff;
+	            color:#000;
 	        }
 	    }
 	}

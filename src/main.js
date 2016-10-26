@@ -51,13 +51,14 @@ const routes = [
 			}, {
 				path: '/mine',
 				component: mine
-			}, {
-				path: '/list/Detail/:id',
-				name: 'Detail',
-				component: Detail
 			}
 			//数组结束
 		]
+	},
+	{
+		path: '/list/Detail/:id',
+		name: 'Detail',
+		component: Detail
 	},
 	{
 		path: '/signup',

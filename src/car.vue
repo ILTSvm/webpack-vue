@@ -1,9 +1,9 @@
 <template>
 	<div class = "car-box">
 		<div class = "hasNo-good" v-if = "hasGood==false">
-			<p class = "iconfont">&#xe6af;</p>
+			<p class = "iconfont">&#xe73d;</p>
 			<span>购物车是空的 !</span>
-			<div>立即去购物</div>
+			<router-link to = "list">立即去购物</router-link>
 		</div>
 		<div class = "has-good" v-if = "hasGood==true">
 		    <div class = "car-title"><h1>我的购物车</h1></div>
@@ -132,8 +132,8 @@
     			color:#C0C0C0;
     			margin: 0 auto;
     		}
-    		div{
-    			
+    		a{
+    			display:block;
     			width:1.8rem;
     			height:.4rem;
     			line-height:.4rem;
@@ -258,6 +258,7 @@
     	    	width:100%;
     	        height:50px;
     	        line-height:50px;
+    	        border-top:.01rem solid #ccc;
     	        @include flexbox();
     	        .total-box{
     	        	@include flex(1);

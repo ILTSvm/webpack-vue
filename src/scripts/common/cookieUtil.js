@@ -95,7 +95,9 @@ let _cookie = {
 	 * @param {Str} goodName
 	 */
 	removeCookie(cookieName){
-		this.setCookie(cookieName,{},-1);
+		var date=new Date();
+	    date.setDate(date.getDate()-1);
+		document.cookie="username="+"{}"+";expires="+date;
 	},
 	/**
 	 * @param {Str}goodId

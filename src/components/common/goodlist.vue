@@ -1,6 +1,5 @@
 <template>
 	<div id = "good-container">
-		<router-view></router-view>
 		<ul class = "goodlists">
 			<li  class =  "goodinfo" v-for = "good in goodlist">
 				<img :src = "'https://wlwywlqk.cn/img/'+good.piclists[0]">
@@ -25,13 +24,16 @@ export default {
       }
     },
     created: function() {
-      var that = this;
-      this.$http.get('https://wlwywlqk.cn/goods/getData?pageindex=1&pagesize=10')
+        var that = this;
+      		this.$http.get('https://wlwywlqk.cn/goods/getData?pageindex='+Math.ceil(Math.random()*20)+'&pagesize=10')
         .then((res) => {
           this.goodlist = JSON.parse(res.data);
-          setTimeout(function(){
-            new IScroll('#good-container');
-          }, 500);
+          this.$nextTick(()=>{
+	      new IScroll('.goodlists',{click: true,mouseWheel: true })
+	    })
+//        setTimeout(function(){
+//          new IScroll('.goodlists');
+//        }, 500);
 //
 //        mySwiper = new Swiper("#index-swiper", {
 //          onSlideChangeStart: function(){
@@ -39,9 +41,9 @@ export default {
 //          }
 //        });
         })
-},
-//  mounted(){
-//      new IScroll('#good-container')
+	},
+//   mounted(){
+//      new IScroll('.goodlists',{click:true})
 //  }
 }
 </script>
@@ -55,7 +57,7 @@ export default {
       @include flexbox();
       @include flex-direction(column);
       .goodlists{
-          @include flex(1);
+          /*@include flex(1);*/
           width:100%;
           @include flexbox();
           @include flex-wrap(wrap);
