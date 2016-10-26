@@ -1,18 +1,22 @@
 <template>
 	<div id="signin">
+		<back>会员登录</back>
 		<div class="container">
-			<input v-model="phone" placeholder="手机号">
-			<input v-model="password" type="password" placeholder="设置登录密码">
-			<button class="register" @click="onSignIn">登录</button>
-
-			<router-link class="login" :to="{path:'/signup'}">去注册>></router-link>
-			<span class="tip">{{tip}}</span>
+			<div class="box">
+				<input v-model="phone" placeholder="手机号">
+				<input v-model="password" type="password" placeholder="设置登录密码">
+				<button class="register" @click="onSignIn">登录</button>
+				<router-link class="login" :to="{path:'/signup'}">去注册>></router-link>
+				<span class="tip">{{tip}}</span>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import IScroll from 'iscroll'
+import back from './components/common/back'
+
 var timer
 export default {
     name: 'singin',
@@ -27,9 +31,12 @@ export default {
             tip: ''
         }
     },
+    components:{
+        back
+    },
     mounted(){
         this.$nextTick(()=>{
-            new IScroll('#signin',{click: true,mouseWheel: true })
+            new IScroll('.container',{click: true,mouseWheel: true })
         })
     },
     methods: {
@@ -75,17 +82,18 @@ export default {
 <style lang="scss" scoped>
 	@import "./styles/usage/core/reset.scss";
 	#signin {
-
-		padding: .16rem;
-		margin: .6rem 0;
-        
-        height: 100%;
-        .container{
-            @include flexbox();
-            @include flex-direction(column);
-            @include align-items(center);
-            padding-bottom: 1rem;
-        }
+		height: 100%;
+		.container {
+            height: 100%;
+			.box {
+				padding: .16rem;
+				margin-top: .6rem;
+				@include flexbox();
+				@include flex-direction(column);
+				@include align-items(center);
+				padding-bottom: 1rem;
+			}
+		}
 		input {
 			width: 100%;
 			line-height: .32rem;
