@@ -89,7 +89,6 @@ export default {
 	    color:#fff;
 	    .tablist{
 	        border:1px solid #000;
-
 	        background:#a42e8e;
 	        height:44px;
 	        line-height:44px;
