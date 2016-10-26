@@ -62,7 +62,46 @@
         goodGlobal: '../../../static/images/24a5386981fd.jpg',
         goodBigType: [],
         goodContent: [],
-        guessLove: []
+        guessLove: [],
+        getMore: function(self, that, dataUrl, dataType, myScroll, bigImg){
+
+          that.$http.get(dataUrl).then((res) => {
+            var getCurdata = res.data;
+            var newData = {};
+            if(dataType == 2){
+                newData = {
+                classes: 'good-content good-content3 hotProducts',
+                hotGoods: bigImg,
+                goodList: []
+              }
+            }else if(dataType == 3){
+                newData = {
+                classes: 'good-content good-content4 guessLove',
+                topTil: '../../../static/images/ec956fe5b6f8.png',
+                goodList: []
+              }
+            }
+            var arrCurData = JSON.parse(getCurdata);
+            for(var j=0; j<arrCurData.length; j++){
+              let obj = {};
+              obj.imgUrl = "https://wlwywlqk.cn/img/"+arrCurData[j].piclists[0];
+              obj.text = arrCurData[j].name;
+              obj.price = "￥"+arrCurData[j].price;
+              newData.goodList.push(obj);
+            }
+
+            that.goodContent.push(newData);
+
+            Vue.nextTick(function() {
+                commonUtil.isAllLoaded('#gt_scroll', function(){
+                myScroll.refresh();
+                if(dataType == 3){
+                  self.maxScrollY += 43;
+                }
+              })
+            });
+          });
+        }
       }
     },
     components: {
@@ -73,8 +112,8 @@
     mounted: function(){
       // console.log("mounted");
       let that = this;
-
-      that.$http.get('/syhIndex/indexData').then((res) => {
+      that.$http.get('https://wlwywlqk.cn/getindex').then((res) => {
+        res.data = JSON.parse(res.data);
         that.goodsType = res.data.goodsType;
         that.goodContent = res.data.goodContent;
         that.goodBigType = res.data.goodBigType;
@@ -98,64 +137,15 @@
                           for(var i=0; i<that.goodBigType.length; i++){
                             var dataUrl =  "https://wlwywlqk.cn/goods/search?search="+that.goodBigType[i].type+"&pagesize=4";
                             let bigImg = that.goodBigType[i].imgUrl;
-                            that.$http.get(dataUrl).then((res) => {
-                                var getCurdata = res.data;
-                                var newData = {
-                                classes: 'good-content good-content3 hotProducts',
-                                hotGoods: '../../../static/images/6e35e0752220.jpg',
-                                goodList: []
-                              };
-                              newData.hotGoods = bigImg;
-                              var arrCurData = JSON.parse(getCurdata);
-                              (function(){
-                                for(var j=0; j<4; j++){
-                                  let obj = {};
-                                  obj.imgUrl = "https://wlwywlqk.cn/img/"+arrCurData[j].piclists[0];
-                                  obj.text = arrCurData[j].name;
-                                  obj.price = "￥"+arrCurData[j].price;
-                                  newData.goodList.push(obj);
-                                }
-                              })()
-                              that.goodContent.push(newData);
-                              // console.log(newData);
-                              Vue.nextTick(function() {
-                                  commonUtil.isAllLoaded('#gt_scroll', function(){
-                                  myScroll.refresh();
-                                  // self.maxScrollY += ;
-                                })
-                              });
-                            });
+                            let dataType = 2;
+                            that.getMore(self, that, dataUrl, dataType, myScroll, bigImg);
                           };
                           that.getCountData ++ ;
                         }else if(that.getCountData == 3){
-                            var dataUrl =  "https://wlwywlqk.cn/goods/getData?&pagesize=15";
-                            let countIndex = i;
-                            that.$http.get(dataUrl).then((res) => {
-                                var getCurdata = res.data;
-                                var newData = {
-                                  classes: 'good-content good-content4 guessLove',
-                                  topTil: '../../../static/images/ec956fe5b6f8.png',
-                                  goodList: []
-                              };
-
-                              var arrCurData = JSON.parse(getCurdata);
-                                for(var j=0; j<arrCurData.length; j++){
-                                  let obj = {};
-                                  obj.imgUrl = "https://wlwywlqk.cn/img/"+arrCurData[j].piclists[0];
-                                  obj.text = arrCurData[j].name;
-                                  obj.price = "￥"+arrCurData[j].price;
-                                  newData.goodList.push(obj);
-                                }
-                              that.getCountData ++ ;
-                              that.goodContent.push(newData);
-                              Vue.nextTick(function() {
-                                  commonUtil.isAllLoaded('#gt_scroll', function(){
-                                  myScroll.refresh();
-                                  self.maxScrollY += 43;
-                                  // myScroll.scrollTo(0, self.maxScrollY + 35);
-                                })
-                              });
-                            })
+                          var dataUrl =  "https://wlwywlqk.cn/goods/getData?&pagesize=15";
+                          let dataType = 3;
+                          that.getMore(self, that, dataUrl, dataType, myScroll);
+                          that.getCountData ++ ;
                         }
                     }
                 });
