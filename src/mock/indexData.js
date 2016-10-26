@@ -77,18 +77,22 @@ module.exports = {
         topTil: '../../../static/images/5f6263a6a7b2.png',
         hotGoods: '../../../static/images/6e35e0752220.jpg',
         goodList: [{
+            id: '57ed08be22673b1d8c95224b',
             imgUrl: 'https://wlwywlqk.cn/img/101727df2ec68b6f119f207228837f1a.jpg',
             text: 'Love Your Skin - 天然保湿乳液 130ml',
             price: '￥138.00'
         }, {
+            id: '57ed08be22673b1d8c952805',
             imgUrl: 'https://wlwywlqk.cn/img/096faa83eb7c2ded67c058a31df5f91e.jpg',
             text: 'STEAMCREAM - 招财猫能量蒸汽面霜',
             price: '￥63.50'
         }, {
+            id: '57ed08be22673b1d8c952d77',
             imgUrl: 'https://wlwywlqk.cn/img/eae0a9594f38116d3032167a342e4a47.jpg',
             text: 'CLARINS - Multi-active 全新多元瓣膜赋活日霜',
             price: '￥470.00'
         }, {
+            id: '57ed08be22673b1d8c952d78',
             imgUrl: 'https://wlwywlqk.cn/img/512e1f6174bcdbf260bacd8852cff5c8.jpg',
             text: 'Kneipp - 女士保湿面霜',
             price: '￥269.00'

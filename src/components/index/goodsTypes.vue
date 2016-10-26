@@ -2,6 +2,10 @@
   <div id="gt_scroll">
     <div class="scroll-wrap">
       <!-- <headerHtml></headerHtml> -->
+      <div class="index-swiper">
+        <swiper :swiper="swiper"></swiper>
+      </div>
+
       <div id="goTp" class="goods-types">
         <nav class="index-navbar">
           <li v-for="gt in goodsType">
@@ -43,20 +47,31 @@
         </div>
       </div>
     </div>
-    
   </div>
   
 </template>
 
 <script>
- import headerHtml from './header';
+ // import headerHtml from './header';
  import Vue from 'vue';
  import commonUtil from "../../scripts/common/commonUtil";
  import IScroll from 'iscroll';
+ import swiper from '../common/swiper';
   export default {
     data(){
       return {
         getCountData: 0,
+        swiper:{
+          piclists: [
+          '../../../static/images/f1f418e738b2.jpg',
+          '../../../static/images/ba8b2f09a4e1.jpg',
+          '../../../static/images/2b53f47064c3.jpg'
+          ], 
+          options: {
+            autoplay: 3600,
+            pagination: true,
+          }
+        },
         imgArrow: require('../../assets/arrow.png'),
         goodsType: [],
         goodGlobal: '../../../static/images/24a5386981fd.jpg',
@@ -64,7 +79,6 @@
         goodContent: [],
         guessLove: [],
         getMore: function(self, that, dataUrl, dataType, myScroll, bigImg){
-
           that.$http.get(dataUrl).then((res) => {
             var getCurdata = res.data;
             var newData = {};
@@ -84,6 +98,7 @@
             var arrCurData = JSON.parse(getCurdata);
             for(var j=0; j<arrCurData.length; j++){
               let obj = {};
+              obj.id = arrCurData[j]["_id"];
               obj.imgUrl = "https://wlwywlqk.cn/img/"+arrCurData[j].piclists[0];
               obj.text = arrCurData[j].name;
               obj.price = "￥"+arrCurData[j].price;
@@ -105,7 +120,8 @@
       }
     },
     components: {
-      headerHtml
+      swiper
+      // headerHtml
     },
     updated(){
     },
@@ -117,7 +133,6 @@
         that.goodsType = res.data.goodsType;
         that.goodContent = res.data.goodContent;
         that.goodBigType = res.data.goodBigType;
-        // console.log(res.data.goodContent);
         Vue.nextTick(function() {
             commonUtil.isAllLoaded('#gt_scroll', function() {
                 var myScroll = new IScroll('#gt_scroll', {
@@ -169,8 +184,11 @@
   #gt_scroll{
     width: 100%;
     height: 100%;
+    background: #efeff0;
     .scroll-wrap{
       width: 100%;
+      @include flexbox();
+      @include flex-direction(column);
     }
   }
   header{
@@ -193,6 +211,13 @@
         color: #a52e8d;
         font-size: 12px;
       }
+    }
+  }
+  .index-swiper{
+    width: 100%;
+    margin-bottom: 10px;
+    img{
+      width: 100%;
     }
   }
   .goods-types{

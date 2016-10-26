@@ -50,6 +50,11 @@ export default {
           return options
       }
   },
+  mounted(){
+      this.$nextTick(()=>{
+          new Swiper('.swiper-container',this.options)
+      })
+  },
   updated(){
       this.$nextTick(()=>{
           new Swiper('.swiper-container',this.options)
