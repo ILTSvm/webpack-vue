@@ -95,7 +95,7 @@ let _cookie = {
 	 * @param {Str} goodName
 	 */
 	removeCookie(cookieName){
-		setCookie(cookieName,{},-1);
+		this.setCookie(cookieName,{},-1);
 	},
 	/**
 	 * @param {Str}goodId

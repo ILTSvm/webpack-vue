@@ -61,7 +61,7 @@ export default {
       price: '加载中...',
       comment: '加载中...',
       src: '',
-      count: 0
+      count: 1
     }
   },
 
@@ -101,16 +101,22 @@ export default {
   mounted(){
     var goods = cookie.getGood()
     var len = goods.length
+		var has = false
     sum = 0
     for(var i = 0; i < len; i++){
       
       if(goods[i]._id == id){
         this.count = goods[i].count
+				has = true
       }else{
         sum += goods[i].count
       }
     }
-    this.carcount = sum + this.count
+    if(has){
+			this.carcount = sum + this.count
+		}else{
+			this.carcount = sum 
+		}
 
 
 

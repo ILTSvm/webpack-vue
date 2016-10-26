@@ -16,6 +16,7 @@
 <script>
 import IScroll from 'iscroll'
 import back from './components/common/back'
+import cookie from './scripts/common/cookieUtil.js'
 
 var timer
 export default {
@@ -64,6 +65,8 @@ export default {
                
                    console.dir(resolve)
                if(resolve.body == 1){
+                   cookie.setCookie('username',{name: this.phone})
+                   console.dir(cookie.getCookie('username'))
                    window.location.href = '/#/mine'
                }else{
                    this.tip = resolve.body
