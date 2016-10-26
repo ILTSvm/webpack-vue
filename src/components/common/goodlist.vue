@@ -16,7 +16,7 @@
 	</div>
 </template>
 <script>
-import IScroll from "IScroll";
+import IScroll from "iscroll";
 export default {
 	name:"goodlists",
     data() {
@@ -30,7 +30,7 @@ export default {
         .then((res) => {
           this.goodlist = JSON.parse(res.data);
           setTimeout(function(){
-            new IScroll('.goodlists');
+            new IScroll('#good-container');
           }, 500);
 //
 //        mySwiper = new Swiper("#index-swiper", {
@@ -39,7 +39,10 @@ export default {
 //          }
 //        });
         })
-    }
+},
+//  mounted(){
+//      new IScroll('#good-container')
+//  }
 }
 </script>
 <style lang = "scss" scoped>
@@ -56,7 +59,8 @@ export default {
           width:100%;
           @include flexbox();
           @include flex-wrap(wrap);
-          background:#CCCCCC;
+          background:#eeeeee;
+          padding-bottom:10px;
           li{
             position: relative;
             @include flexbox();

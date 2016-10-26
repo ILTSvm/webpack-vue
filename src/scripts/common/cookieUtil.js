@@ -118,7 +118,7 @@ let _cookie = {
 			var newGoodStr = oldGoodArr.join("&&&");
 			var date=new Date();
 	    	date.setDate(date.getDate()+30);
-			document.cookie="goods="+newGoodStr+";expires="+date;
+			document.cookie="goods="+encodeURIComponent(newGoodStr)+";expires="+date;
 		}
 	}
 	
