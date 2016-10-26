@@ -35,8 +35,8 @@ export default {
             width: .38rem;
             .lt{
                 transform: rotate(45deg);
-                border-bottom: 5px solid #fff;
-                border-left: 5px solid #fff;
+                border-bottom: .05rem solid #fff;
+                border-left: .05rem solid #fff;
                 width: .16rem;
                 height: .16rem;
                 margin: .1rem;

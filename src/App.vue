@@ -84,14 +84,14 @@ export default {
 	        background:#fff;
 	    }
 	    @include flexbox();
-	    height:44px;
+	    height:.44rem;
 	    width:100%;
 	    color:#000;
 	    .tablist{
 	        border:1px solid #000;
-	        background:green;
-	        height:44px;
-	        line-height:44px;
+	        background:#fff;
+	        height:.44rem;
+	        line-height:.44rem;
 	        @include flex(1);
 	    }
 	}
