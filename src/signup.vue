@@ -1,21 +1,26 @@
 <template>
 	<div id="signup">
+		<back>会员注册</back>
 		<div class="container">
-			<input v-model="phone" placeholder="请输入手机号">
-			<button class="getnum" @click="getNum">获取短信验证码</button>
-			<input v-model="rnum" placeholder="请输入收到的验证码">
-			<input v-model="password" type="password" placeholder="设置登录密码">
-			<input v-model="rpassword" type="password" placeholder="确认登录密码">
-			<button class="register" @click="onSingUp">提交注册</button>
+			<div class="box">
+				<input v-model="phone" placeholder="请输入手机号">
+				<button class="getnum" @click="getNum">获取短信验证码</button>
+				<input v-model="rnum" placeholder="请输入收到的验证码">
+				<input v-model="password" type="password" placeholder="设置登录密码">
+				<input v-model="rpassword" type="password" placeholder="确认登录密码">
+				<button class="register" @click="onSingUp">提交注册</button>
 
-			<router-link class="login" :to="{path:'/signin'}">去登录>></router-link>
-			<span class="tip">{{tip}}</span>
+				<router-link class="login" :to="{path:'/signin'}">去登录>></router-link>
+				<span class="tip">{{tip}}</span>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 import IScroll from 'iscroll'
+import back from './components/common/back'
+
 var timer
 export default {
     name: 'singup',
@@ -30,9 +35,12 @@ export default {
             tip: ''
         }
     },
+    components:{
+        back
+    },
     mounted(){
         this.$nextTick(()=>{
-            new IScroll('#signup',{click: true,mouseWheel: true })
+            new IScroll('.container',{click: true,mouseWheel: true })
         })
     },
     methods: {
@@ -101,14 +109,17 @@ export default {
 <style lang="scss" scoped>
 	@import "./styles/usage/core/reset.scss";
 	#signup {
-		padding: .16rem;
-		margin: .6rem 0;
 		height: 100%;
 		.container {
-			@include flexbox();
-			@include flex-direction(column);
-			@include align-items(center);
-			padding-bottom: 1rem;
+			height: 100%;
+			.box {
+				padding: .16rem;
+				margin-top: .6rem 0;
+				@include flexbox();
+				@include flex-direction(column);
+				@include align-items(center);
+				padding-bottom: 1rem;
+			}
 		}
 		input {
 			width: 100%;

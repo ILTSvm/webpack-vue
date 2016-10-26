@@ -1,47 +1,52 @@
 <template>
 	<div id="detail">
+		<back>详情页-{{name}}</back>
 		<div class="container">
+
 			<div>
-        <swiper :swiper="swiper"></swiper>
-			<div class="name">{{name}}</div>
-			<span class="price">{{'￥'+price}}</span>
-			<div class="countbox">
-				<div class="count">
-					<span class="decrease" @click="onDecrease">-</span>
-					<input class="input" v-model.number="count>50?count=50:count">
-					<span class="increase" @click="onIncrease">+</span>
-				</div>
-			</div>
-
-			<div class="detail">
-				<div class="head">
-					<span class="title">商品详情介绍</span>
-				</div>
-				<div class="comment">{{comment}}</div>
-			</div>
-      </div>
-    </div>
-      <div class="gobuy">
-				<router-link :to="{path:'/car'}">
-					<div class="car"><img src="./assets/car.png">
-						<span class="carcount" v-show="carcount">{{carcount}}</span>
+				<swiper :swiper="swiper"></swiper>
+				<div class="name">{{name}}</div>
+				<span class="price">{{'￥'+price}}</span>
+				<div class="countbox">
+					<div class="count">
+						<span class="decrease" @click="onDecrease">-</span>
+						<input class="input" v-model.number="count>50?count=50:count">
+						<span class="increase" @click="onIncrease">+</span>
 					</div>
-				</router-link>
+				</div>
 
-				<span class="add" @click="addCar">加入购物车</span>
+				<div class="detail">
+					<div class="head">
+						<span class="title">商品详情介绍</span>
+					</div>
+					<div class="comment">{{comment}}</div>
+				</div>
 			</div>
+		</div>
+		<div class="gobuy">
+			<router-link :to="{path:'/car'}">
+				<div class="car"><img src="./assets/car.png">
+					<span class="carcount" v-show="carcount">{{carcount}}</span>
+				</div>
+			</router-link>
+
+			<span class="add" @click="addCar">加入购物车</span>
+		</div>
 
 	</div>
 </template>
 
 <script>
-import Swiper from './components/common/swiper'
+
+import back from './components/common/back'
+import swiper from './components/common/swiper'
 import IScroll from 'iscroll'
 import cookie from './scripts/common/cookieUtil.js'
 var sum = 0
 var id = ''
 export default {
   name: 'detail',
+ 
   data(){
     return {
       carcount: 0,
@@ -56,7 +61,7 @@ export default {
       price: '加载中...',
       comment: '加载中...',
       src: '',
-      count: 0
+      count: 1
     }
   },
 
@@ -90,21 +95,28 @@ export default {
    
   },
   components: {
-    Swiper,
+    swiper,
+    back
   },
   mounted(){
     var goods = cookie.getGood()
     var len = goods.length
+		var has = false
     sum = 0
     for(var i = 0; i < len; i++){
       
       if(goods[i]._id == id){
         this.count = goods[i].count
+				has = true
       }else{
         sum += goods[i].count
       }
     }
-    this.carcount = sum + this.count
+    if(has){
+			this.carcount = sum + this.count
+		}else{
+			this.carcount = sum 
+		}
 
 
 
@@ -192,7 +204,6 @@ export default {
 			font-size: .14rem;
 			font-family: "微软雅黑";
 			border-bottom: 1px solid #ddd;
-			
 		}
 		.comment {
 			padding: .16rem;
@@ -215,7 +226,7 @@ export default {
 		font-size: .14rem;
 		@include flexbox();
 		@include justify-content(space-around);
-    height: .38rem;
+		height: .38rem;
 		.car {
 			position: relative;
 			img {
@@ -248,14 +259,16 @@ export default {
 			background: #FF4040;
 		}
 	}
-  #detail{
-    @include flexbox();
-    @include flex-direction(column);
-    height: 100%;
-  }
-  .container{
-    flex: 1;
-    height: 100%;
-    overflow: hidden;
-  }
+	
+	#detail {
+		@include flexbox();
+		@include flex-direction(column);
+		height: 100%;
+	}
+	
+	.container {
+		flex: 1;
+		height: 100%;
+		overflow: hidden;
+	}
 </style>
