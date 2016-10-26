@@ -81,13 +81,20 @@ export default {
 	    @include flexbox();
 	    height:44px;
 	    width:100%;
-	    color:#000;
+	    color:#fff;
 	    .tablist{
 	        border:1px solid #000;
-	        background:green;
+	        background:#a42e8e;
 	        height:44px;
 	        line-height:44px;
 	        @include flex(1);
+	        a{
+	        	display:block;
+	        	width:100%;
+	        	height:100%;
+	        	text-align:center;
+	            color:#fff;
+	        }
 	    }
 	}
 }
