@@ -8,6 +8,7 @@
 			<div v-for = "tabs in tablist" class = "tablist">
 				<router-link :to="tabs.linkTo">
 					<p :class = "tabs.className"></p>
+					<p>{{tabs.text}}</p>
 				</router-link>
 			</div>
 		</div>
@@ -85,8 +86,8 @@ export default {
 	    width:100%;
 	    color:#fff;
 	    .tablist{
-	    	font-size:.20rem;
-	        border-top:.01rem solid #000;
+	    	
+	        border-top:.01rem solid #B0B0B0;
 	        background:#fff;
 	        height:44px;
 	        line-height:44px;
@@ -97,6 +98,17 @@ export default {
 	        	height:100%;
 	        	text-align:center;
 	            color:#000;
+	            p{
+	            	height:22px;
+	            	line-height:22px;
+	            	font-size:.12rem;
+	            	color:#818181;
+	            }
+	            .iconfont{
+	            	line-height:28px;
+	            	font-size:.20rem;
+	            }
+	            
 	        }
 	    }
 	}
