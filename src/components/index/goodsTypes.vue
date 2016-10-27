@@ -69,7 +69,7 @@
           ], 
           options: {
             autoplay: 3600,
-            pagination: true,
+            pagination: true
           }
         },
         imgArrow: require('../../assets/arrow.png'),
