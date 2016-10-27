@@ -1,18 +1,18 @@
 <template>
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="pic in piclists"><img class="swiperimg" :src="pic" ></div>
-        </div>
-        <!-- 如果需要分页器 -->
-        <div class="swiper-pagination" v-if="options.pagination"></div>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide" v-for="pic in piclists"><img class="swiperimg" :src="pic"></div>
+		</div>
+		<!-- 如果需要分页器 -->
+		<div class="swiper-pagination" v-if="options.pagination"></div>
 
-        <!-- 如果需要导航按钮 -->
-        <div class="swiper-button-prev" v-if="options.prevButton"></div>
-        <div class="swiper-button-next" v-if="options.nextButton"></div>
+		<!-- 如果需要导航按钮 -->
+		<div class="swiper-button-prev" v-if="options.prevButton"></div>
+		<div class="swiper-button-next" v-if="options.nextButton"></div>
 
-        <!-- 如果需要滚动条 -->
-        <div class="swiper-scrollbar" v-if="options.scrollbar"></div>
-    </div>
+		<!-- 如果需要滚动条 -->
+		<div class="swiper-scrollbar" v-if="options.scrollbar"></div>
+	</div>
 </template>
 
 <script>
@@ -27,11 +27,17 @@ export default {
   props:['swiper'],
   computed:{
       piclists(){
+
           if(this.swiper.piclists&&this.swiper.piclists.length!==0){
+            this.$nextTick(()=>{
+                console.dir(111)
+                new Swiper('.swiper-container',this.options)
+            })
               return this.swiper.piclists
           }else{
               return [require('../../assets/detail.png')]
           }
+
       }, 
       options(){
           var options = this.swiper.options
@@ -50,23 +56,14 @@ export default {
           return options
       }
   },
-  updated(){
-      this.$nextTick(()=>{
-          new Swiper('.swiper-container',this.options)
-      })
-  },
-  mounted(){
-      this.$nextTick(()=>{
-          new Swiper('.swiper-container',this.options)
-      })
-  }
+
 }
 </script>
 
 <style lang="scss" scoped>
-    @charset "utf-8";
-    @import "../../styles/lib/swiper.css";
-    .swiperimg {
-        width: 100%;
-    }
+	@charset "utf-8";
+	@import "../../styles/lib/swiper.css";
+	.swiperimg {
+		width: 100%;
+	}
 </style>
