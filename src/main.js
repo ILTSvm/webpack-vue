@@ -20,7 +20,8 @@ import commonUtil from "./scripts/common/commonUtil";
 
 /* eslint-disable no-new */
 //组件
-
+//
+import guide from "./components/index/guide.vue"
 import tab from './App.vue'
 import index from './index.vue'
 import list from './list.vue'
@@ -32,7 +33,7 @@ import signin from './signin.vue'
 import signup from './signup.vue'
 const routes = [
 	{
-		path: '/',
+		path: '/main',
 		component: tab,
 		children: [
 			{
@@ -68,6 +69,11 @@ const routes = [
 		path: '/signin',
 		name: 'signin',
 		component: signin
+	}
+	, {
+		path: '/',
+		name: 'guide',
+		component: guide
 	}
 ]
 const router = new VueRouter({

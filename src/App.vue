@@ -3,7 +3,6 @@
 	    <div id="scorll">
 	        <router-view></router-view>
 	    </div> 
-
 		<div id = "tab">
 			<div v-for = "tabs in tablist" class = "tablist">
 				<router-link :to="tabs.linkTo">
