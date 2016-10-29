@@ -1,12 +1,13 @@
 <template>
 	<div class = "car-box">
+	    <div class = "car-title"><h1>我的购物车</h1></div>
 		<div class = "hasNo-good" v-if = "hasGood==false">
 			<p class = "iconfont">&#xe73d;</p>
 			<span>购物车是空的 !</span>
 			<router-link to = "list">立即去购物</router-link>
 		</div>
 		<div class = "has-good" v-if = "hasGood==true">
-		    <div class = "car-title"><h1>我的购物车</h1></div>
+
 		    <div class = "car-info">
 		        <div class = "car-row" v-for = "good in goodinfo" v-if = "good.count">
 		        	<div class = "car-choose"><input type = "checkbox" name = "car-choose"/></div>
@@ -110,6 +111,19 @@
     	height:100%;	
     	@include flexbox();
     	@include flex-direction(column);
+    	.car-title{
+    	        height:44px;
+    	        line-height:44px;
+    	        h1{
+    	            height:44px;
+    	            line-height:44px;
+    	            width:100%;
+    	            text-align: center;
+    	            font-size:16px;
+    	            background: #a42e8e;
+    	            color:#fff;
+    	        }
+         }
     	.hasNo-good{
     		height:100%;
     		width:100%;
@@ -150,19 +164,6 @@
     	    @include flex();
     	    width:100%;
     	    @include flex-direction(column);
-    	    .car-title{
-    	        height:44px;
-    	        line-height:44px;
-    	        h1{
-    	            height:44px;
-    	            line-height:44px;
-    	            width:100%;
-    	            text-align: center;
-    	            font-size:16px;
-    	            background: #a42e8e;
-    	            color:#fff;
-    	        }
-    	    }
     	    .car-info{
     	        @include flex();
     	        width:100%;
@@ -184,6 +185,7 @@
                     .car-img{
                         width:.6rem;
                         margin-right:.2rem;
+                        overflow: hidden;
                         img{
                             width:100%;
                         }

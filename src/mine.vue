@@ -56,6 +56,7 @@ import IScroll from 'iscroll'
 import signup from './signup'
 import goodlist from './components/common/goodlist.vue'
 import _cookie from './scripts/common/cookieUtil.js'
+import common from './scripts/common/commonUtil.js'
 export default {
   name: 'detail',
   data(){
@@ -113,8 +114,8 @@ export default {
     goodlist
   },
   mounted(){
-  	var myScroll = new IScroll('.section-box');
-  	console.dir(myScroll);
+//	var myScroll = new IScroll('.section-box');
+//	console.dir(myScroll);
   	var loginStr = _cookie.getCookie("username");
   	if(loginStr!=''&&loginStr){
   		var loginInfo = JSON.parse(loginStr);
@@ -123,14 +124,11 @@ export default {
   	}else{
   		this.isLogin = false;
   	}
+  	common.isAllLoaded('.section-box',function(){
+  		var myScroll = new IScroll('.section-box',{click:true,mouseWheel: true});
+  	})
+  	
   },
-  updated(){
-  	var myScroll = new IScroll('.section-box',{click:true,mouseWheel: true});
-  	console.log(0);
-  },
-  beforeCreate(){
-    
-  }
 }
 </script>
 
@@ -145,24 +143,32 @@ export default {
     @include flexbox();
     @include flex-direction(column);
     	.mine-header{
-    		background:#a42e8e;
-    		height:40px;
-    		color:#fff;
-    		line-height:20px;
+    		height: 44px;
+		    line-height: 44px;
+		    width: 100%;
+		    text-align: center;
+		    font-size: 16px;
+		    background: #a42e8e;
+		    color: #fff;
+
     		@include flexbox();
     		div{
     			@include flex();
     			box-sizing:border-box;
-    			padding:10px;
+    			/*padding:10px;*/
     		}
     		.setting{
     			text-align: left;
+				margin-left:15px;
     		}
     		.header-text{
     			text-align:center;
+    			font-weight: bold;
     		}
     		.message{
     			text-align:right;
+    			margin-right:15px;
+    			
     		}
     	}
 	    .section-box{
