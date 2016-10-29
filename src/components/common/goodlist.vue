@@ -11,35 +11,51 @@
 				    <div class = "car"><figcaption class = "car">自营</figcaption></div>
 				</div>
 			</li>
+			<div v-if = "loading" class = "loading">loading...</div>
 		</ul>
+					
 	</div>
 </template>
 <script>
 import IScroll from "iscroll";
+import common from "../../scripts/common/commonUtil.js"
 export default {
 	name:"goodlists",
     data() {
       return {
         goodlist:[],
+        loading:false,
+        refresh:false,
       }
     },
     created: function() {
         var that = this;
-      		this.$http.get('https://wlwywlqk.cn/goods/getData?pageindex='+Math.ceil(Math.random()*20)+'&pagesize=10')
+      		this.$http.get('https://wlwywlqk.cn/goods/getData?pageindex='+Math.ceil(Math.random()*50)+'&pagesize=10')
         .then((res) => {
           this.goodlist = JSON.parse(res.data);
           this.$nextTick(()=>{
-	      new IScroll('.goodlists',{click: true,mouseWheel: true })
-	    })
-//        setTimeout(function(){
-//          new IScroll('.goodlists');
-//        }, 500);
-//
-//        mySwiper = new Swiper("#index-swiper", {
-//          onSlideChangeStart: function(){
-//            that.curIndex = mySwiper.activeIndex;
-//          }
-//        });
+		      var myIscroll = new IScroll('#good-container',{click: true,mouseWheel: true });
+		      myIscroll.on('scrollEnd', function(){
+		      	that.loading = true;
+		      	this.refresh();
+		      	var timer = setTimeout(function(){	
+				common.isAllLoaded('.goodlist',function(){
+					 				that.$http.get('https://wlwywlqk.cn/goods/getData?pageindex='+Math.ceil(Math.random()*200)+'&pagesize=6')
+		        	.then((res) => {
+		        	 var newData = JSON.parse(res.data)
+		             that.goodlist = that.goodlist.concat(newData);
+		             that.loading = false;
+			         that.$nextTick(()=>{
+			             myIscroll.refresh();
+			             })
+			          })
+				})
+
+		      		},2000)
+	
+	            })
+		    })
+
         })
 	},
 //   mounted(){
@@ -51,13 +67,14 @@ export default {
   @charset "utf-8";
   @import "../../styles/usage/core/reset.scss";
   #good-container{
-
-      @include flex(1);
+/*	  @include flexbox();	*/
+      @include flex();
       width:100%;
-      @include flexbox();
-      @include flex-direction(column);
+      overflow:hidden;
+      
+      /*@include flex-direction(column);*/
       .goodlists{
-          /*@include flex(1);*/
+          flex:none;
           width:100%;
           @include flexbox();
           @include flex-wrap(wrap);
@@ -139,6 +156,13 @@ export default {
                     }
                 }
             }
+          }
+          .loading{
+          	height:50px;
+          	width:100%;
+          	line-height:50px;
+          	text-align: center;
+          	font-size:.20rem;
           }
       }
   }

@@ -38,22 +38,25 @@ export default {
   #big-container{
       width:100%;
       height:100%;
-      overflow: hidden;
+      /*overflow: hidden;*/
+     background:#eeeeee;
       @include flexbox();
       @include flex-direction(column);
       .list-header{
-      	background:#a42e8e;
-      	height:50px;
-      	line-height:50px;
-      	color:#fff;
-      	font-size:16px;
-      	text-align:center;
+      	height: 44px;
+	    line-height: 44px;
+	    width: 100%;
+	    text-align: center;
+	    font-size: 16px;
+	    background: #a42e8e;
+	    color: #fff;
+	    font-weight: bold;
       }
-      .navlist{
-      	 height:40px;
-      	 width:100%;
+      .navlist{ 
       	 @include flexbox();
-		 
+      	 height:40px;
+      	 flex:none;
+      	 width:100%;
      	 li{
      	 	flex:1;
 			@include line_height(40px);
